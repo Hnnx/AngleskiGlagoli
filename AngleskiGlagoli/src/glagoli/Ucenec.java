@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -48,25 +50,27 @@ public class Ucenec extends JFrame {
 	private JPanel vrsticaZNapisi;	
 	private JLabel glagolTab, pastSimpleTab, pastPrincipleTab, prevodTab;
 	
-	private JButton btnNewButton;
-	private JButton button;
-	private JButton button_1;
-	private JButton button_2;
-	private JButton button_3;
-	private JButton button_4;
-	private JButton button_5;
-	private JButton button_6;
-	private JButton button_7;
-	private JButton button_8;
-	private JButton button_9;
-	private JButton button_10;
+	private JButton check1;
+	private JButton check2;
+	private JButton check3;
+	private JButton check4;
+	private JButton check5;
+	private JButton check6;
+	private JButton aaa;
+	private JButton check8aaa;
+	private JButton aa;
+	private JButton check9;
+	private JButton check8;
+	private JButton check7;
 	private JButton button_11;
 	private JButton button_12;
 	private JButton button_13;
+	
 	private JLabel resetIcon;
+	private JLabel tocke15;
 	
 	Color temnoModra = new Color(0, 0, 51);
-	private JLabel tocke15;
+	
 	public Ucenec() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 983, 904);
@@ -354,7 +358,6 @@ public class Ucenec extends JFrame {
 		glagolPanel.add(glagol12);
 		
 		pastS12 = new JTextField();
-		pastS12.setForeground(Color.RED);
 		pastS12.setHorizontalAlignment(SwingConstants.CENTER);
 		pastS12.setColumns(10);
 		glagolPanel.add(pastS12);
@@ -447,12 +450,12 @@ public class Ucenec extends JFrame {
 		glagolTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisi.add(glagolTab);
 		
-		pastSimpleTab = new JLabel("past simple");
+		pastSimpleTab = new JLabel("Past simple");
 		pastSimpleTab.setForeground(Color.WHITE);
 		pastSimpleTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisi.add(pastSimpleTab);
 		
-		pastPrincipleTab = new JLabel("past principle");
+		pastPrincipleTab = new JLabel("Past principle");
 		pastPrincipleTab.setForeground(Color.WHITE);
 		pastPrincipleTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisi.add(pastPrincipleTab);
@@ -462,57 +465,66 @@ public class Ucenec extends JFrame {
 		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisi.add(prevodTab);
 		
-		btnNewButton = new JButton("PREVERI");
-		btnNewButton.setBounds(754, 187, 89, 23);
-		frame.add(btnNewButton);
 		
-		button = new JButton("PREVERI");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button.setBounds(754, 233, 89, 23);
-		frame.add(button);
+		//Adding check IMG so it doesn't get resized by JButton
 		
-		button_1 = new JButton("PREVERI");
-		button_1.setBounds(754, 279, 89, 23);
-		frame.add(button_1);
+		ImageIcon checkIcon = new ImageIcon("C:\\Users\\anhjje\\Desktop\\output-onlinepngtools.png");
 		
-		button_2 = new JButton("PREVERI");
-		button_2.setBounds(754, 320, 89, 23);
-		frame.add(button_2);
+		Image checkImg = checkIcon.getImage();
+		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
+		checkIcon = new ImageIcon( newCheckImg);
 		
-		button_3 = new JButton("PREVERI");
-		button_3.setBounds(754, 366, 89, 23);
-		frame.add(button_3);
+		check1 = new JButton(checkIcon);
+		check1.setBounds(778, 184, 37, 23);
+		check1.setBackground(temnoModra);
+		check1.setBorderPainted(false);
+		check1.setOpaque(false);
 		
-		button_4 = new JButton("PREVERI");
-		button_4.setBounds(754, 412, 89, 23);
-		frame.add(button_4);
+		frame.add(check1);
 		
-		button_5 = new JButton("PREVERI");
-		button_5.setBounds(754, 680, 89, 23);
-		frame.add(button_5);
+		check2 = new JButton("PREVERI");
+		check2.setBounds(754, 233, 89, 23);
+		frame.add(check2);
 		
-		button_6 = new JButton("PREVERI");
-		button_6.setBounds(754, 634, 89, 23);
-		frame.add(button_6);
+		check3 = new JButton("PREVERI");
+		check3.setBounds(754, 279, 89, 23);
+		frame.add(check3);
 		
-		button_7 = new JButton("PREVERI");
-		button_7.setBounds(754, 588, 89, 23);
-		frame.add(button_7);
+		check4 = new JButton("PREVERI");
+		check4.setBounds(754, 320, 89, 23);
+		frame.add(check4);
 		
-		button_8 = new JButton("PREVERI");
-		button_8.setBounds(754, 547, 89, 23);
-		frame.add(button_8);
+		check5 = new JButton("PREVERI");
+		check5.setBounds(754, 366, 89, 23);
+		frame.add(check5);
 		
-		button_9 = new JButton("PREVERI");
-		button_9.setBounds(754, 501, 89, 23);
-		frame.add(button_9);
+		check6 = new JButton("PREVERI");
+		check6.setBounds(754, 412, 89, 23);
+		frame.add(check6);
 		
-		button_10 = new JButton("PREVERI");
-		button_10.setBounds(754, 455, 89, 23);
-		frame.add(button_10);
+		check7 = new JButton("PREVERI");
+		check7.setBounds(754, 455, 89, 23);
+		frame.add(check7);
+		
+		check8 = new JButton("PREVERI");
+		check8.setBounds(754, 501, 89, 23);
+		frame.add(check8);
+		
+		check9 = new JButton("PREVERI");
+		check9.setBounds(754, 547, 89, 23);
+		frame.add(check9);
+		
+		aaa = new JButton("PREVERI");
+		aaa.setBounds(754, 680, 89, 23);
+		frame.add(aaa);
+		
+		check8aaa = new JButton("PREVERI");
+		check8aaa.setBounds(754, 634, 89, 23);
+		frame.add(check8aaa);
+		
+		aa = new JButton("PREVERI");
+		aa.setBounds(754, 588, 89, 23);
+		frame.add(aa);
 		
 		button_11 = new JButton("PREVERI");
 		button_11.setBounds(754, 810, 89, 23);
@@ -577,14 +589,14 @@ public class Ucenec extends JFrame {
 		tocke15.setBounds(128, 30, 57, 34);
 		userInfo.add(tocke15);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(-1, 29, 347, 1);
-		userInfo.add(separator);
+		JSeparator crtaPodUcencem = new JSeparator();
+		crtaPodUcencem.setBounds(-1, 29, 347, 1);
+		userInfo.add(crtaPodUcencem);
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(40);
-		progressBar.setBounds(10, 66, 326, 12);
-		userInfo.add(progressBar);
+		JProgressBar tockeBar = new JProgressBar();
+		tockeBar.setValue(40);
+		tockeBar.setBounds(10, 66, 326, 12);
+		userInfo.add(tockeBar);
 		
 		JLabel tocke = new JLabel("3");
 		tocke.setForeground(Color.WHITE);
