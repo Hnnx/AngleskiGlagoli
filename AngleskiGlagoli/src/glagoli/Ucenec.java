@@ -138,7 +138,7 @@ public class Ucenec extends JFrame {
 
 
 		/*	>> HARD + SOFT RESET	<< keyword: hardReset */
-		resetIcon = new ImageIcon("arrw.png");		
+		resetIcon = new ImageIcon("icons//arrw.png");		
 		Image resetImg = resetIcon.getImage();
 		Image resizeResetIcon = resetImg.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);		
 		resetIcon = new ImageIcon(resizeResetIcon); 
@@ -190,7 +190,7 @@ public class Ucenec extends JFrame {
 
 		//EXIT BUTTON (debug)
 		
-		exitIcon = new ImageIcon("exit.png");
+		exitIcon = new ImageIcon("icons//exit.png");
 		Image exitImg = exitIcon.getImage();
 		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
 		exitIcon = new ImageIcon(resizeExitIcon);
@@ -229,7 +229,8 @@ public class Ucenec extends JFrame {
 		tockeLabel.setBounds(20, 41, 67, 14);
 		userInfoPanel.add(tockeLabel);
 
-		User u = new User(); String ime = u.getUporabniskoIme();
+		User u = new User(); 
+		String ime = u.getUporabniskoIme();
 
 		JLabel userName = new JLabel(ime);
 		userName.setForeground(Color.WHITE);
@@ -325,7 +326,7 @@ public class Ucenec extends JFrame {
 	private static JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
 
 		//ICON
-		checkIcon = new ImageIcon("check.png");
+		checkIcon = new ImageIcon("icons//check.png");
 		Image checkImg = checkIcon.getImage();
 		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
 		checkIcon = new ImageIcon( newCheckImg);
