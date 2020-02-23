@@ -3,6 +3,7 @@ package glagoli;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
 
@@ -68,8 +69,9 @@ public class Ucenec extends JFrame {
 	
 	//>> tocke
 	private JLabel tocke15;
-	private static int points = 0;
+	private static int points;
 	private static JLabel tocke;
+	private static JProgressBar tockeBar;
 
 
 
@@ -254,8 +256,8 @@ public class Ucenec extends JFrame {
 		crtaPodUcencem.setBounds(-1, 29, 347, 1);
 		userInfoPanel.add(crtaPodUcencem);
 
-		JProgressBar tockeBar = new JProgressBar();
-		tockeBar.setValue(40);
+		tockeBar = new JProgressBar();
+		tockeBar.setValue(getTockeBar());
 		tockeBar.setBounds(10, 66, 326, 12);
 		userInfoPanel.add(tockeBar);
 
@@ -444,6 +446,11 @@ public class Ucenec extends JFrame {
 	public static String getPoints() {
 		String strPoints = String.valueOf(points);
 		return strPoints;
+	}
+	
+	public static int getTockeBar() {
+		int pointsPercentage = points * 10;
+		return pointsPercentage;
 	}
 
 
