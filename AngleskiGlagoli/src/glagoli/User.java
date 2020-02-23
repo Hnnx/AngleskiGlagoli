@@ -86,7 +86,7 @@ public class User extends JFrame {
 		char[] getPassword = vnosPassword.getPassword();
 		String stringPassword = new String(vnosPassword.getPassword());
 		
-		if( uporabniskoIme.equals("Nejc") && stringPassword.equals("g") ) {
+		if( uporabniskoIme.equals("User") && stringPassword.equals("geslo1")     ||   uporabniskoIme.equals("Admin") && stringPassword.equals("geslo1")  || uporabniskoIme.equals("Nejc") && stringPassword.equals("geslo1")) {
 			
 			JOptionPane.showMessageDialog(null, "Pozdravljen, "+ uporabniskoIme);
 			Ucenec u = new Ucenec();
