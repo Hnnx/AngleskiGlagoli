@@ -22,11 +22,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
 
 public class Ucenec extends JFrame {
 
-	private JPanel frame;
-	
+	private JPanel mainPanel;
+
 	//>> Glagoli
 	private JTextField glagol1, pastS1,pastP1, prevod1;	
 	private JTextField glagol2, pastS2, pastP2, prevod2;
@@ -43,570 +46,384 @@ public class Ucenec extends JFrame {
 	private JTextField glagol13, pastS13, pastP13, prevod13;
 	private JTextField glagol14, pastS14, pastP14, prevod14;
 	private JTextField glagol15, pastS15, pastP15, prevod15;
-	
-	
-	
+
+
 	//>> Tab nad glagoli
-	private JPanel vrsticaZNapisi;	
+	private JPanel vrsticaZNapisiPanel;	
 	private JLabel glagolTab, pastSimpleTab, pastPrincipleTab, prevodTab;
-	
+
+	private JButton resetButton;
 	private JButton check1;
 	private JButton check2;
 	private JButton check3;
 	private JButton check4;
 	private JButton check5;
 	private JButton check6;
-	private JButton aaa;
-	private JButton check8aaa;
-	private JButton aa;
+	private JButton check10;
+	private JButton check11;
+	private JButton check12;
 	private JButton check9;
 	private JButton check8;
 	private JButton check7;
-	private JButton button_11;
-	private JButton button_12;
-	private JButton button_13;
-	
-	private JLabel resetIcon;
+	private JButton check13;
+	private JButton check14;
+	private JButton check15;
+
 	private JLabel tocke15;
-	
+
 	Color temnoModra = new Color(0, 0, 51);
-	
+	Color offModra = new Color(0,0,51);
+	Color winColor = new Color(46, 204, 113 );
+
+
+
+	/*   >>>  METODA ZA KREIRANJE FIELDOV Z GLAGOLI  <<<  keyword: FIELDGEN  */
+	private static JTextField makeGlagol(String text) {
+
+		JTextField textField = new JTextField();
+		textField.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
+		textField.setText(text);
+		textField.setEditable(false);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);		
+		textField.setColumns(10);
+
+		return textField;
+
+	}
+
+
+	private static JTextField makeGlagol() {
+
+		JTextField textField = new JTextField();
+		textField.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
+		textField.setEditable(true);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);		
+		textField.setColumns(10);
+
+		return textField;
+
+	}
+
 	public Ucenec() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 983, 904);
-		frame = new JPanel();
-		frame.setBackground(new Color(0, 51, 102));
-		frame.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(frame);
-		frame.setLayout(null);
-		
-		JPanel glagolPanel = new JPanel();
-		glagolPanel.setBounds(40, 184, 704, 649);
-		frame.add(glagolPanel);
-		glagolPanel.setLayout(new GridLayout(0, 4, 20, 20));
-		
-		
-		
-		glagol1 = new JTextField();
-		glagol1.setText("HAVE");
-		glagol1.setEditable(false);
-		glagol1.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(glagol1);
-		glagol1.setColumns(10);
-		
-		pastS1 = new JTextField();
-		pastS1.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastS1);
-		pastS1.setColumns(10);
-		
-		pastP1 = new JTextField();
-		pastP1.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastP1);
-		pastP1.setColumns(10);
-		
-		prevod1 = new JTextField();
-		prevod1.setEditable(false);
-		prevod1.setText("IMETI");
-		prevod1.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(prevod1);
-		prevod1.setColumns(10);
-		
-		glagol2 = new JTextField();
-		glagol2.setEditable(false);
-		glagol2.setText("LOSE");
-		glagol2.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(glagol2);
-		glagol2.setColumns(10);
-		
-		pastS2 = new JTextField();
-		pastS2.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastS2);
-		pastS2.setColumns(10);
-		
-		pastP2 = new JTextField();
-		pastP2.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastP2);
-		pastP2.setColumns(10);
-		
-		prevod2 = new JTextField();
-		prevod2.setEditable(false);
-		prevod2.setText("IZGUBITI");
-		prevod2.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(prevod2);
-		prevod2.setColumns(10);
-		
-		glagol3 = new JTextField();
-		glagol3.setText("STAND");
-		glagol3.setEditable(false);
-		glagol3.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(glagol3);
-		glagol3.setColumns(10);
-		
-		pastS3 = new JTextField();
-		pastS3.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastS3);
-		pastS3.setColumns(10);
-		
-		pastP3 = new JTextField();
-		pastP3.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastP3);
-		pastP3.setColumns(10);
-		
-		prevod3 = new JTextField();
-		prevod3.setEditable(false);
-		prevod3.setText("STATI");
-		prevod3.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(prevod3);
-		prevod3.setColumns(10);
-		
-		glagol4 = new JTextField();
-		glagol4.setText("EAT");
-		glagol4.setEditable(false);
-		glagol4.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(glagol4);
-		glagol4.setColumns(10);
-		
-		pastS4 = new JTextField();
-		pastS4.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastS4);
-		pastS4.setColumns(10);
-		
-		pastP4 = new JTextField();
-		pastP4.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastP4);
-		pastP4.setColumns(10);
-		
-		prevod4 = new JTextField();
-		prevod4.setEditable(false);
-		prevod4.setText("JESTI");
-		prevod4.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(prevod4);
-		prevod4.setColumns(10);
-		
-		glagol5 = new JTextField();
-		glagol5.setText("MEET");
-		glagol5.setEditable(false);
-		glagol5.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(glagol5);
-		glagol5.setColumns(10);
-		
-		pastS5 = new JTextField();
-		pastS5.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastS5);
-		pastS5.setColumns(10);
-		
-		pastP5 = new JTextField();
-		pastP5.setHorizontalAlignment(SwingConstants.CENTER);
-		glagolPanel.add(pastP5);
-		pastP5.setColumns(10);
-		
-		prevod5 = new JTextField();
-		prevod5.setEditable(false);
-		prevod5.setText("SRECATI");
-		prevod5.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod5.setColumns(10);
-		glagolPanel.add(prevod5);
-		
-		glagol6 = new JTextField();
-		glagol6.setText("THINK");
-		glagol6.setEditable(false);
-		glagol6.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol6.setColumns(10);
-		glagolPanel.add(glagol6);
-		
-		pastS6 = new JTextField();
-		pastS6.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS6.setColumns(10);
-		glagolPanel.add(pastS6);
-		
-		pastP6 = new JTextField();
-		pastP6.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP6.setColumns(10);
-		glagolPanel.add(pastP6);
-		
-		prevod6 = new JTextField();
-		prevod6.setEditable(false);
-		prevod6.setText("MISLITI");
-		prevod6.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod6.setColumns(10);
-		glagolPanel.add(prevod6);
-		
-		glagol7 = new JTextField();
-		glagol7.setText("GET");
-		glagol7.setEditable(false);
-		glagol7.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol7.setColumns(10);
-		glagolPanel.add(glagol7);
-		
-		pastS7 = new JTextField();
-		pastS7.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS7.setColumns(10);
-		glagolPanel.add(pastS7);
-		
-		pastP7 = new JTextField();
-		pastP7.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP7.setColumns(10);
-		glagolPanel.add(pastP7);
-		
-		prevod7 = new JTextField();
-		prevod7.setEditable(false);
-		prevod7.setText("DOBITI");
-		prevod7.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod7.setColumns(10);
-		glagolPanel.add(prevod7);
-		
-		glagol8 = new JTextField();
-		glagol8.setText("DRAW");
-		glagol8.setEditable(false);
-		glagol8.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol8.setColumns(10);
-		glagolPanel.add(glagol8);
-		
-		pastS8 = new JTextField();
-		pastS8.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS8.setColumns(10);
-		glagolPanel.add(pastS8);
-		
-		pastP8 = new JTextField();
-		pastP8.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP8.setColumns(10);
-		glagolPanel.add(pastP8);
-		
-		prevod8 = new JTextField();
-		prevod8.setEditable(false);
-		prevod8.setText("RISATI");
-		prevod8.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod8.setColumns(10);
-		glagolPanel.add(prevod8);
-		
-		glagol9 = new JTextField();
-		glagol9.setText("KNOW");
-		glagol9.setEditable(false);
-		glagol9.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol9.setColumns(10);
-		glagolPanel.add(glagol9);
-		
-		pastS9 = new JTextField();
-		pastS9.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS9.setColumns(10);
-		glagolPanel.add(pastS9);
-		
-		pastP9 = new JTextField();
-		pastP9.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP9.setColumns(10);
-		glagolPanel.add(pastP9);
-		
-		prevod9 = new JTextField();
-		prevod9.setEditable(false);
-		prevod9.setText("VEDETI");
-		prevod9.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod9.setColumns(10);
-		glagolPanel.add(prevod9);
-		
-		glagol10 = new JTextField();
-		glagol10.setText("SING");
-		glagol10.setEditable(false);
-		glagol10.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol10.setColumns(10);
-		glagolPanel.add(glagol10);
-		
-		pastS10 = new JTextField();
-		pastS10.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS10.setColumns(10);
-		glagolPanel.add(pastS10);
-		
-		pastP10 = new JTextField();
-		pastP10.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP10.setColumns(10);
-		glagolPanel.add(pastP10);
-		
-		prevod10 = new JTextField();
-		prevod10.setEditable(false);
-		prevod10.setText("PETI");
-		prevod10.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod10.setColumns(10);
-		glagolPanel.add(prevod10);
-		
-		glagol11 = new JTextField();
-		glagol11.setText("SWIM");
-		glagol11.setEditable(false);
-		glagol11.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol11.setColumns(10);
-		glagolPanel.add(glagol11);
-		
-		pastS11 = new JTextField();
-		pastS11.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS11.setColumns(10);
-		glagolPanel.add(pastS11);
-		
-		pastP11 = new JTextField();
-		pastP11.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP11.setColumns(10);
-		glagolPanel.add(pastP11);
-		
-		prevod11 = new JTextField();
-		prevod11.setText("PLAVATI");
-		prevod11.setEditable(false);
-		prevod11.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod11.setColumns(10);
-		glagolPanel.add(prevod11);
-		
-		glagol12 = new JTextField();
-		glagol12.setEditable(false);
-		glagol12.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol12.setColumns(10);
-		glagolPanel.add(glagol12);
-		
-		pastS12 = new JTextField();
-		pastS12.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS12.setColumns(10);
-		glagolPanel.add(pastS12);
-		
-		pastP12 = new JTextField();
-		pastP12.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP12.setColumns(10);
-		glagolPanel.add(pastP12);
-		
-		prevod12 = new JTextField();
-		prevod12.setEditable(false);
-		prevod12.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod12.setColumns(10);
-		glagolPanel.add(prevod12);
-		
-		glagol13 = new JTextField();
-		glagol13.setEditable(false);
-		glagol13.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol13.setColumns(10);
-		glagolPanel.add(glagol13);
-		
-		pastS13 = new JTextField();
-		pastS13.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS13.setColumns(10);
-		glagolPanel.add(pastS13);
-		
-		pastP13 = new JTextField();
-		pastP13.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP13.setColumns(10);
-		glagolPanel.add(pastP13);
-		
-		prevod13 = new JTextField();
-		prevod13.setEditable(false);
-		prevod13.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod13.setColumns(10);
-		glagolPanel.add(prevod13);
-		
-		glagol14 = new JTextField();
-		glagol14.setEditable(false);
-		glagol14.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol14.setColumns(10);
-		glagolPanel.add(glagol14);
-		
-		pastS14 = new JTextField();
-		pastS14.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS14.setColumns(10);
-		glagolPanel.add(pastS14);
-		
-		pastP14 = new JTextField();
-		pastP14.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP14.setColumns(10);
-		glagolPanel.add(pastP14);
-		
-		prevod14 = new JTextField();
-		prevod14.setEditable(false);
-		prevod14.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod14.setColumns(10);
-		glagolPanel.add(prevod14);
-		
-		glagol15 = new JTextField();
-		glagol15.setEditable(false);
-		glagol15.setHorizontalAlignment(SwingConstants.CENTER);
-		glagol15.setColumns(10);
-		glagolPanel.add(glagol15);
-		
-		pastS15 = new JTextField();
-		pastS15.setHorizontalAlignment(SwingConstants.CENTER);
-		pastS15.setColumns(10);
-		glagolPanel.add(pastS15);
-		
-		pastP15 = new JTextField();
-		pastP15.setHorizontalAlignment(SwingConstants.CENTER);
-		pastP15.setColumns(10);
-		glagolPanel.add(pastP15);
-		
-		prevod15 = new JTextField();
-		prevod15.setHorizontalAlignment(SwingConstants.CENTER);
-		prevod15.setEditable(false);
-		prevod15.setColumns(10);
-		glagolPanel.add(prevod15);
-		
-		vrsticaZNapisi = new JPanel();
-		vrsticaZNapisi.setBackground(new Color(0, 0, 51));
-		vrsticaZNapisi.setBounds(40, 121, 709, 50);
-		frame.add(vrsticaZNapisi);
-		vrsticaZNapisi.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		glagolTab = new JLabel("Glagol");
+		mainPanel = new JPanel();
+		mainPanel.setBackground(new Color(0, 51, 102));
+		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainPanel);
+		mainPanel.setLayout(null);
+
+		/*    >> MAIN PANEL Z GLAGOLI keyword: GLAGOLPANEL  << */
+		JPanel glagoliPanel = new JPanel();
+		glagoliPanel.setBounds(40, 184, 704, 649);
+		mainPanel.add(glagoliPanel);
+		glagoliPanel.setLayout(new GridLayout(0, 4, 20, 20));
+
+
+
+		/*   >>  GLAGOLI V GRIDU <<  keyword: GLAGOLGRID */
+
+		glagol1 = makeGlagol("HAVE");   pastS1 = makeGlagol();   pastP1 = makeGlagol();   prevod1 = makeGlagol("IMETI");		
+		glagoliPanel.add(glagol1); glagoliPanel.add(pastS1); glagoliPanel.add(pastP1); glagoliPanel.add(prevod1);
+
+		glagol2 = makeGlagol("LOSE");   pastS2 = makeGlagol();   pastP2 = makeGlagol();	  prevod2 = makeGlagol("IZGUBITI");
+		glagoliPanel.add(glagol2); glagoliPanel.add(pastS2); glagoliPanel.add(pastP2); glagoliPanel.add(prevod2);
+
+		glagol3 = makeGlagol("STAND");   pastS3 = makeGlagol();   pastP3 = makeGlagol();   prevod3 = makeGlagol("STATI");
+		glagoliPanel.add(glagol3); glagoliPanel.add(pastS3); glagoliPanel.add(pastP3); glagoliPanel.add(prevod3);
+
+		glagol4 = makeGlagol("EAT");   pastS4 = makeGlagol();   pastP4 = makeGlagol();   prevod4 = makeGlagol("JESTI");
+		glagoliPanel.add(glagol4); glagoliPanel.add(pastS4); glagoliPanel.add(pastP4); glagoliPanel.add(prevod4);
+
+		glagol5 = makeGlagol("MEET");   pastS5 = makeGlagol();   pastP5 = makeGlagol();   prevod5 = makeGlagol("SRECATI");
+		glagoliPanel.add(glagol5); glagoliPanel.add(pastS5); glagoliPanel.add(pastP5); glagoliPanel.add(prevod5);
+
+		glagol6 = makeGlagol("THINK");   pastS6 = makeGlagol();   pastP6 = makeGlagol();   prevod6 = makeGlagol("MISLITI");
+		glagoliPanel.add(glagol6); glagoliPanel.add(pastS6); glagoliPanel.add(pastP6); glagoliPanel.add(prevod6);
+
+		glagol7 = makeGlagol("GET");   pastS7 = makeGlagol();   pastP7 = makeGlagol();   prevod7 = makeGlagol("DOBITI");	
+		glagoliPanel.add(glagol7); glagoliPanel.add(pastS7); glagoliPanel.add(pastP7); glagoliPanel.add(prevod7);
+
+		glagol8 = makeGlagol("DRAW");   pastS8= makeGlagol();   pastP8 = makeGlagol();   prevod8 = makeGlagol("RISATI");
+		glagoliPanel.add(glagol8); glagoliPanel.add(pastS8); glagoliPanel.add(pastP8); glagoliPanel.add(prevod8);
+
+		glagol9 = makeGlagol("KNOW");   pastS9 = makeGlagol();   pastP9 = makeGlagol();   prevod9 = makeGlagol("VEDETI");
+		glagoliPanel.add(glagol9); glagoliPanel.add(pastS9); glagoliPanel.add(pastP9); glagoliPanel.add(prevod9);		
+
+		glagol10 = makeGlagol("SING");   pastS10 = makeGlagol();   pastP10 = makeGlagol();   prevod10 = makeGlagol("PETI");
+		glagoliPanel.add(glagol10); glagoliPanel.add(pastS10); glagoliPanel.add(pastP10); glagoliPanel.add(prevod10);
+
+		glagol11 = makeGlagol("SWIM");   pastS11 = makeGlagol();   pastP11 = makeGlagol();   prevod11 = makeGlagol("PLAVATI");
+		glagoliPanel.add(glagol11); glagoliPanel.add(pastS11); glagoliPanel.add(pastP11); glagoliPanel.add(prevod11);
+
+		glagol12 = makeGlagol("BURN");   pastS12 = makeGlagol();   pastP12 = makeGlagol();   prevod12 = makeGlagol("GORETI");
+		glagoliPanel.add(glagol12); glagoliPanel.add(pastS12); glagoliPanel.add(pastP12); glagoliPanel.add(prevod12);
+
+		glagol13 = makeGlagol("FORGET");   pastS13 = makeGlagol();   pastP13 = makeGlagol();   prevod13 = makeGlagol("POZABITI");
+		glagoliPanel.add(glagol13); glagoliPanel.add(pastS13); glagoliPanel.add(pastP13); glagoliPanel.add(prevod13);
+
+		glagol14 = makeGlagol("READ");   pastS14 = makeGlagol();   pastP14 = makeGlagol();   prevod14 = makeGlagol("BRATI");
+		glagoliPanel.add(glagol14); glagoliPanel.add(pastS14); glagoliPanel.add(pastP14); glagoliPanel.add(prevod14);
+
+		glagol15 = makeGlagol("SEW");   pastS15 = makeGlagol();   pastP15 = makeGlagol();   prevod15 = makeGlagol("SIVATI");
+		glagoliPanel.add(glagol15); glagoliPanel.add(pastS15); glagoliPanel.add(pastP15); glagoliPanel.add(prevod15);
+
+
+
+		vrsticaZNapisiPanel = new JPanel();
+		vrsticaZNapisiPanel.setBackground(new Color(0, 0, 51));
+		vrsticaZNapisiPanel.setBounds(40, 121, 709, 50);
+		mainPanel.add(vrsticaZNapisiPanel);
+		vrsticaZNapisiPanel.setLayout(new GridLayout(1, 0, 5, 0));
+
+		glagolTab = new JLabel("GLAGOL");
+		glagolTab.setFont(new Font("Arial", Font.PLAIN, 18));
 		glagolTab.setForeground(Color.WHITE);
+		glagolTab.setBackground(offModra);
 		glagolTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisi.add(glagolTab);
-		
-		pastSimpleTab = new JLabel("Past simple");
+		vrsticaZNapisiPanel.add(glagolTab);
+
+		pastSimpleTab = new JLabel("SIMPLE");
+		pastSimpleTab.setFont(new Font("Arial", Font.PLAIN, 18));
 		pastSimpleTab.setForeground(Color.WHITE);
 		pastSimpleTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisi.add(pastSimpleTab);
-		
-		pastPrincipleTab = new JLabel("Past principle");
+		vrsticaZNapisiPanel.add(pastSimpleTab);
+
+		pastPrincipleTab = new JLabel("PRINCIPLE");
+		pastPrincipleTab.setFont(new Font("Arial", Font.PLAIN, 18));
 		pastPrincipleTab.setForeground(Color.WHITE);
 		pastPrincipleTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisi.add(pastPrincipleTab);
-		
-		prevodTab = new JLabel("Prevod");
+		vrsticaZNapisiPanel.add(pastPrincipleTab);
+
+		prevodTab = new JLabel("PREVOD");
+		prevodTab.setFont(new Font("Arial", Font.PLAIN, 18));
 		prevodTab.setForeground(Color.WHITE);
 		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisi.add(prevodTab);
-		
-		
+		vrsticaZNapisiPanel.add(prevodTab);
+
+
 		//Adding check IMG so it doesn't get resized by JButton
-		
+
 		ImageIcon checkIcon = new ImageIcon("C:\\Users\\anhjje\\Desktop\\output-onlinepngtools.png");
-		
+
 		Image checkImg = checkIcon.getImage();
 		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
 		checkIcon = new ImageIcon( newCheckImg);
-		
-		check1 = new JButton(checkIcon);
-		check1.setBounds(778, 184, 37, 23);
-		check1.setBackground(temnoModra);
-		check1.setBorderPainted(false);
-		check1.setOpaque(false);
-		
-		frame.add(check1);
-		
-		check2 = new JButton("PREVERI");
-		check2.setBounds(754, 233, 89, 23);
-		frame.add(check2);
-		
-		check3 = new JButton("PREVERI");
-		check3.setBounds(754, 279, 89, 23);
-		frame.add(check3);
-		
-		check4 = new JButton("PREVERI");
-		check4.setBounds(754, 320, 89, 23);
-		frame.add(check4);
-		
-		check5 = new JButton("PREVERI");
-		check5.setBounds(754, 366, 89, 23);
-		frame.add(check5);
-		
-		check6 = new JButton("PREVERI");
-		check6.setBounds(754, 412, 89, 23);
-		frame.add(check6);
-		
-		check7 = new JButton("PREVERI");
-		check7.setBounds(754, 455, 89, 23);
-		frame.add(check7);
-		
-		check8 = new JButton("PREVERI");
-		check8.setBounds(754, 501, 89, 23);
-		frame.add(check8);
-		
-		check9 = new JButton("PREVERI");
-		check9.setBounds(754, 547, 89, 23);
-		frame.add(check9);
-		
-		aaa = new JButton("PREVERI");
-		aaa.setBounds(754, 680, 89, 23);
-		frame.add(aaa);
-		
-		check8aaa = new JButton("PREVERI");
-		check8aaa.setBounds(754, 634, 89, 23);
-		frame.add(check8aaa);
-		
-		aa = new JButton("PREVERI");
-		aa.setBounds(754, 588, 89, 23);
-		frame.add(aa);
-		
-		button_11 = new JButton("PREVERI");
-		button_11.setBounds(754, 810, 89, 23);
-		frame.add(button_11);
-		
-		button_12 = new JButton("PREVERI");
-		button_12.setBounds(754, 764, 89, 23);
-		frame.add(button_12);
-		
-		button_13 = new JButton("PREVERI");
-		button_13.setBounds(754, 718, 89, 23);
-		frame.add(button_13);
-		
-		resetIcon = new JLabel("");
-		resetIcon.addMouseListener(new MouseAdapter() {
-			
+
+
+
+		// RESIZE + ADD ICON
+		ImageIcon resetIcon = new ImageIcon("C:\\Users\\anhjje\\Desktop\\arrw.png");		
+		Image resetImg = resetIcon.getImage();
+		Image resizeResetIcon = resetImg.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);		
+		resetIcon = new ImageIcon(resizeResetIcon); 
+
+		//Reset Button 
+		resetButton = new JButton(resetIcon);
+		resetButton.setBounds(766, 132, 35, 35);
+		resetButton.setBackground(temnoModra);
+		resetButton.setOpaque(false);
+		resetButton.setBorderPainted(false);
+
+		resetButton.addMouseListener(new MouseAdapter() {
+
 			public void mouseClicked(MouseEvent e) {
-				
 				resetPolja();
-				
-				
-				
 			}
 		});
-		resetIcon.setToolTipText("PONASTAVI");
-		resetIcon.setIcon(new ImageIcon("C:\\Users\\anhjje\\Desktop\\arrw.png"));
-		resetIcon.setBounds(782, 121, 33, 50);
-		frame.add(resetIcon);
-		
-		JPanel userInfo = new JPanel();
-		userInfo.setBounds(40, 21, 346, 89);
-		userInfo.setBackground(temnoModra);
-		frame.add(userInfo);
-		userInfo.setLayout(null);
-		
+
+		mainPanel.add(resetButton);
+
+
+		JButton exit = new JButton("EXIT");
+		exit.setBounds(790, 20, 120,90);
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				System.exit(0);
+			}
+		});
+
+		getContentPane().add(exit);
+
+
+
+		JPanel userInfoPanel = new JPanel();
+		userInfoPanel.setBounds(40, 21, 346, 89);
+		userInfoPanel.setBackground(temnoModra);
+		mainPanel.add(userInfoPanel);
+		userInfoPanel.setLayout(null);
+
 		JLabel ucenecLabel = new JLabel("Ucenec :");
-		ucenecLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		ucenecLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		ucenecLabel.setForeground(Color.WHITE);
 		ucenecLabel.setBounds(10, 0, 76, 30);
-		userInfo.add(ucenecLabel);
-		
+		userInfoPanel.add(ucenecLabel);
+
 		JLabel tockeLabel = new JLabel("Tocke :");
-		tockeLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		tockeLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		tockeLabel.setForeground(Color.WHITE);
 		tockeLabel.setBounds(20, 41, 67, 14);
-		userInfo.add(tockeLabel);
-		
+		userInfoPanel.add(tockeLabel);
+
 
 		User u = new User();	
 		String ime = u.getUporabniskoIme();
-		
-		
+
+
 		JLabel userName = new JLabel(ime);
 		userName.setForeground(Color.WHITE);
 		userName.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		userName.setBounds(94, -2, 133, 35);
-		userInfo.add(userName);
-		
+		userInfoPanel.add(userName);
+
 		tocke15 = new JLabel(" / 15");
 		tocke15.setForeground(Color.WHITE);
 		tocke15.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tocke15.setBounds(128, 30, 57, 34);
-		userInfo.add(tocke15);
-		
+		userInfoPanel.add(tocke15);
+
 		JSeparator crtaPodUcencem = new JSeparator();
 		crtaPodUcencem.setBounds(-1, 29, 347, 1);
-		userInfo.add(crtaPodUcencem);
-		
+		userInfoPanel.add(crtaPodUcencem);
+
 		JProgressBar tockeBar = new JProgressBar();
 		tockeBar.setValue(40);
 		tockeBar.setBounds(10, 66, 326, 12);
-		userInfo.add(tockeBar);
-		
-		JLabel tocke = new JLabel("3");
+		userInfoPanel.add(tockeBar);
+
+		JLabel tocke = new JLabel(getPoints());
 		tocke.setForeground(Color.WHITE);
 		tocke.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tocke.setBounds(104, 32, 30, 30);
-		userInfo.add(tocke);
+		userInfoPanel.add(tocke);
+
+		JPanel checkGridPanel = new JPanel();
+		checkGridPanel.setBounds(754, 184, 41, 649);
+		checkGridPanel.setBackground(Color.black);
+		checkGridPanel.setOpaque(false);
+		mainPanel.add(checkGridPanel);
+		checkGridPanel.setLayout(new GridLayout(0, 1, 20, 20));
+
+
+
+		check1 = new JButton(checkIcon);
+		check1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String vneseniText = pastS1.getText();
+
+				if(vneseniText.equals("AAA")) {
+
+					//pastS1.setBackground(winColor);
+					pastS1.setForeground(winColor);
+					pastS1.setEditable(false);
+
+				}
+				else {
+					pastS1.setForeground(Color.red);
+					pastS1.setEditable(false);
+				}
+
+
+			}
+		});
+
+
+
+		checkGridPanel.add(check1);
+		check1.setBackground(temnoModra);
+		check1.setBorderPainted(false);
+		check1.setOpaque(false);
+
+		check2 = new JButton(checkIcon);
+		checkGridPanel.add(check2);
+		check2.setBackground(temnoModra);
+		check2.setBorderPainted(false);
+		check2.setOpaque(false);
+
+		check3 = new JButton(checkIcon);
+		checkGridPanel.add(check3);
+		check3.setBackground(temnoModra);
+		check3.setBorderPainted(false);
+		check3.setOpaque(false);
+
+		check4 = new JButton(checkIcon);
+		checkGridPanel.add(check4);
+		check4.setBackground(temnoModra);
+		check4.setBorderPainted(false);
+		check4.setOpaque(false);
+
+		check5 = new JButton(checkIcon);
+		checkGridPanel.add(check5);
+		check5.setBackground(temnoModra);
+		check5.setBorderPainted(false);
+		check5.setOpaque(false);
+
+		check6 = new JButton(checkIcon);
+		checkGridPanel.add(check6);
+		check6.setBackground(temnoModra);
+		check6.setBorderPainted(false);
+		check6.setOpaque(false);
+
+		check7 = new JButton(checkIcon);
+		checkGridPanel.add(check7);
+		check7.setBackground(temnoModra);
+		check7.setBorderPainted(false);
+		check7.setOpaque(false);
+
+		check8 = new JButton(checkIcon);
+		checkGridPanel.add(check8);
+		check8.setBackground(temnoModra);
+		check8.setBorderPainted(false);
+		check8.setOpaque(false);
+
+		check9 = new JButton(checkIcon);
+		checkGridPanel.add(check9);
+		check9.setBackground(temnoModra);
+		check9.setBorderPainted(false);
+		check9.setOpaque(false);
+
+		check10 = new JButton(checkIcon);
+		checkGridPanel.add(check10);
+		check10.setBackground(temnoModra);
+		check10.setBorderPainted(false);
+		check10.setOpaque(false);
+
+		check11 = new JButton(checkIcon);
+		checkGridPanel.add(check11);
+		check11.setBackground(temnoModra);
+		check11.setBorderPainted(false);
+		check11.setOpaque(false);
+
+		check12 = new JButton(checkIcon);
+		checkGridPanel.add(check12);
+		check12.setBackground(temnoModra);
+		check12.setBorderPainted(false);
+		check12.setOpaque(false);
+
+		check14 = new JButton(checkIcon);
+		checkGridPanel.add(check14);
+		check14.setBackground(temnoModra);
+		check14.setBorderPainted(false);
+		check14.setOpaque(false);
+
+		check13 = new JButton(checkIcon);
+		checkGridPanel.add(check13);
+		check13.setBackground(temnoModra);
+		check13.setBorderPainted(false);
+		check13.setOpaque(false);
+
+		check15 = new JButton(checkIcon);
+		checkGridPanel.add(check15);
+		check15.setBackground(temnoModra);
+		check15.setBorderPainted(false);
+		check15.setOpaque(false);
 	}
-	
+
 	public void resetPolja() {
-		
+
 		pastS1.setText(null);pastP1.setText(null);
 		pastS2.setText(null);pastP2.setText(null);
 		pastS3.setText(null);pastP3.setText(null);
@@ -622,6 +439,16 @@ public class Ucenec extends JFrame {
 		pastS13.setText(null);pastP13.setText(null);
 		pastS14.setText(null);pastP14.setText(null);
 		pastS15.setText(null);pastP15.setText(null);
-		
+
+	}
+
+	public static String getPoints() {
+		return "3";
+	}
+
+	public static void anwserChecker(JButton btn) {
+
+
+
 	}
 }
