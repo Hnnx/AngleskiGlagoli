@@ -30,28 +30,21 @@ public class Ucenec extends JFrame {
 	private JPanel mainPanel;
 
 	//>> Glagoli
-	private JTextField glagol1;
-
-	private static JTextField pastS1;
-
-	private static JTextField pastP1;
-
-	private JTextField prevod1;	
-	private JTextField glagol2, pastS2, pastP2, prevod2;
-	private JTextField glagol3, pastS3, pastP3, prevod3;
-	private JTextField glagol4, pastS4 ,pastP4, prevod4;
-	private JTextField glagol5, pastS5, pastP5, prevod5;
-	private JTextField glagol6, pastS6 ,pastP6 ,prevod6;
-	private JTextField glagol7, pastS7, pastP7 ,prevod7;	
-	private JTextField glagol8, pastS8, pastP8, prevod8;
-	private JTextField glagol9 ,pastS9, pastP9, prevod9;
-	private JTextField glagol10, pastS10, pastP10, prevod10;
-	private JTextField glagol11, pastS11, pastP11, prevod11;
-	private JTextField glagol12, pastS12, pastP12, prevod12;
-	private JTextField glagol13, pastS13, pastP13, prevod13;
-	private JTextField glagol14, pastS14, pastP14, prevod14;
-	private JTextField glagol15, pastS15, pastP15, prevod15;
-
+	 JTextField glagol1, pastS1, pastP1,prevod1,	
+	 glagol2, pastS2, pastP2, prevod2,
+	 glagol3, pastS3, pastP3, prevod3,
+	 glagol4, pastS4 ,pastP4, prevod4,
+	 glagol5, pastS5, pastP5, prevod5,
+	 glagol6, pastS6 ,pastP6 ,prevod6,
+	 glagol7, pastS7, pastP7 ,prevod7,	
+	 glagol8, pastS8, pastP8, prevod8,
+	 glagol9 ,pastS9, pastP9, prevod9,
+	 glagol10, pastS10, pastP10, prevod10,
+	 glagol11, pastS11, pastP11, prevod11,
+	 glagol12, pastS12, pastP12, prevod12,
+	 glagol13, pastS13, pastP13, prevod13,
+	 glagol14, pastS14, pastP14, prevod14,
+	 glagol15, pastS15, pastP15, prevod15;
 
 	//>> Tab nad glagoli
 	private JPanel vrsticaZNapisiPanel;	
@@ -62,16 +55,21 @@ public class Ucenec extends JFrame {
 	private JButton resetButton;
 	private JButton check1, check2, check3, check4, check5, check6, check10, check11, check12 ,check9 ,check8 ,check7 ,check13 ,check14 ,check15;
 
-	private JLabel tocke15;
 
 	//>>Paleta
-	static Color temnoModra = new Color(0, 0, 51);
-	static Color offModra = new Color(0,0,51);
-	static Color winColor = new Color(46, 204, 113 );
+	private static Color temnoModra = new Color(0, 0, 51);
+	private static Color offModra = new Color(0,0,51);
+	private static Color winColor = new Color(46, 204, 113 );
 
 	//>> Ikone
-	static ImageIcon checkIcon;
-	static ImageIcon resetIcon;
+	private static ImageIcon checkIcon;
+	private static ImageIcon resetIcon;
+	
+	
+	//>> tocke
+	private JLabel tocke15;
+	private static int points = 0;
+	private static JLabel tocke;
 
 
 
@@ -156,7 +154,7 @@ public class Ucenec extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				
-				JTextField[] glagoli = 
+				JTextField[] glagolCol = 
 					{
 							
 							 glagol1, pastS1, pastP1,prevod1,	
@@ -177,7 +175,30 @@ public class Ucenec extends JFrame {
 							
 					};
 				
-				resetPolja(glagoli);
+					JTextField[] pastSimpleCol = {
+							
+							pastS1,
+							pastS2,
+							pastS3,
+							pastS4,
+							pastS5,
+							pastS6,
+							pastS7,
+							pastS8,
+							pastS9,
+							pastS10,
+							pastS11,
+							pastS12,
+							pastS13,
+							pastS14,
+							pastS15,							
+							
+					};
+					
+					
+					
+				resetPolja(pastSimpleCol);
+				//resetPolja(glagolCol);
 			}
 		});
 
@@ -238,7 +259,7 @@ public class Ucenec extends JFrame {
 		tockeBar.setBounds(10, 66, 326, 12);
 		userInfoPanel.add(tockeBar);
 
-		JLabel tocke = new JLabel(getPoints());
+		tocke = new JLabel(getPoints());
 		tocke.setForeground(Color.WHITE);
 		tocke.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tocke.setBounds(104, 32, 30, 30);
@@ -254,7 +275,7 @@ public class Ucenec extends JFrame {
 		mainPanel.add(checkGridPanel);
 		checkGridPanel.setLayout(new GridLayout(0, 1, 20, 20));
 
-		check1 = makeButton("AAA", pastS1); checkGridPanel.add(check1);
+		check1 = makeButton("have", pastS1, "had", pastP1); checkGridPanel.add(check1);
 		check2 = makeButton("c",pastS2); checkGridPanel.add(check2);
 		check3 = makeButton("c", pastS3); checkGridPanel.add(check3);
 		check4 = makeButton("",pastS4); checkGridPanel.add(check4);
@@ -271,6 +292,7 @@ public class Ucenec extends JFrame {
 		check15 = makeButton("",pastP15); checkGridPanel.add(check15);
 
 
+		/*	>> VRSTICA Z NAPISI NAD GLAGOLI	<< */		
 		vrsticaZNapisiPanel = new JPanel();
 		vrsticaZNapisiPanel.setBounds(40, 121, 709, 50);
 		vrsticaZNapisiPanel.setBackground(offModra);
@@ -306,7 +328,7 @@ public class Ucenec extends JFrame {
 
 	}
 
-	private static JButton makeButton(String caseCheck,JTextField field ) {
+	private static JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
 
 		//ICON
 		checkIcon = new ImageIcon("C:\\Users\\anhjje\\Desktop\\output-onlinepngtools.png");
@@ -319,14 +341,57 @@ public class Ucenec extends JFrame {
 		btn = new JButton(checkIcon);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String vneseniText = field.getText();
-				if(vneseniText.equals(caseCheck)) {
-					field.setForeground(winColor);
-					field.setEditable(false);
+				String vneseniTextS = fieldS.getText();
+				String vneseniTextP = fieldP.getText();
+				if(vneseniTextS.equalsIgnoreCase(caseCheckS) && vneseniTextP.equalsIgnoreCase(caseCheckP) ) {
+					points++;
+					tocke.setText(getPoints());
+					fieldS.setForeground(winColor);
+					fieldS.setEditable(false);
+					fieldP.setForeground(winColor);
+					fieldP.setEditable(false);
+					
 				}
 				else {
-					field.setForeground(Color.red);
-					field.setEditable(false);
+					fieldS.setForeground(Color.red);
+					if(!fieldS.getText().isEmpty() || !fieldS.getText().isBlank()) {
+						fieldS.setEditable(false);
+					}
+				}
+			}
+		});
+		
+		btn.setBackground(temnoModra);
+		btn.setBorderPainted(false);
+		btn.setOpaque(false);
+		return btn;
+	}
+	
+	
+	private static JButton makeButton(String caseCheckS,JTextField fieldS) {
+
+		//ICON
+		checkIcon = new ImageIcon("C:\\Users\\anhjje\\Desktop\\output-onlinepngtools.png");
+		Image checkImg = checkIcon.getImage();
+		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
+		checkIcon = new ImageIcon( newCheckImg);
+		//>>
+
+		JButton btn = new JButton();
+		btn = new JButton(checkIcon);
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String vneseniTextS = fieldS.getText();
+				if(vneseniTextS.equalsIgnoreCase(caseCheckS) ) {
+					points++;
+					tocke.setText(getPoints());
+					fieldS.setForeground(winColor);
+					fieldS.setEditable(false);
+					
+				}
+				else {
+					fieldS.setForeground(Color.red);
+					fieldS.setEditable(false);
 				}
 			}
 		});
@@ -366,7 +431,8 @@ public class Ucenec extends JFrame {
 		
 		for (JTextField element : field) {
 			
-			if(element.isEditable())
+//			if(element.isEditable())
+			element.setEditable(true);
 			element.setText(null);			
 			
 		}
@@ -376,7 +442,8 @@ public class Ucenec extends JFrame {
 	}
 
 	public static String getPoints() {
-		return "3";
+		String strPoints = String.valueOf(points);
+		return strPoints;
 	}
 
 
