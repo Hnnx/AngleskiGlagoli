@@ -45,7 +45,7 @@ public class Ucenec extends JFrame {
 	glagol14, pastS14, pastP14, prevod14,
 	glagol15, pastS15, pastP15, prevod15;
 
-	//>> Tab nad glagoli
+	//>> Tab nad glagoli 
 	private JPanel vrsticaZNapisiPanel;	
 	private JLabel glagolTab, pastSimpleTab, pastPrincipleTab, prevodTab;
 
