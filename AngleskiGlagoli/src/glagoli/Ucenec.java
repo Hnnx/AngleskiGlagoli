@@ -66,7 +66,7 @@ public class Ucenec extends JFrame {
 	private static ImageIcon exitIcon;
 
 	//>> Tocke
-	private JLabel tocke15;
+	private JLabel tocke30;
 	private static int tocke;
 	private static JLabel playerTockeLabel;
 	private static JProgressBar progressBarTocke;
@@ -138,7 +138,7 @@ public class Ucenec extends JFrame {
 
 
 		/*	>> HARD + SOFT RESET	<< keyword: hardReset */
-		resetIcon = new ImageIcon("icons//arrw.png");		
+		resetIcon = new ImageIcon(getClass().getClassLoader().getResource("arrw.png"));
 		Image resetImg = resetIcon.getImage();
 		Image resizeResetIcon = resetImg.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);		
 		resetIcon = new ImageIcon(resizeResetIcon); 
@@ -190,7 +190,7 @@ public class Ucenec extends JFrame {
 
 		//EXIT BUTTON (debug)
 		
-		exitIcon = new ImageIcon("icons//exit.png");
+		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));	
 		Image exitImg = exitIcon.getImage();
 		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
 		exitIcon = new ImageIcon(resizeExitIcon);
@@ -238,11 +238,11 @@ public class Ucenec extends JFrame {
 		userName.setBounds(94, -2, 133, 35);
 		userInfoPanel.add(userName);
 
-		tocke15 = new JLabel(" / 30");
-		tocke15.setForeground(Color.WHITE);
-		tocke15.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tocke15.setBounds(128, 30, 57, 34);
-		userInfoPanel.add(tocke15);
+		tocke30 = new JLabel(" / 30");
+		tocke30.setForeground(Color.WHITE);
+		tocke30.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tocke30.setBounds(128, 30, 57, 34);
+		userInfoPanel.add(tocke30);
 
 		JSeparator crtaPodUcencem = new JSeparator();
 		crtaPodUcencem.setBounds(-1, 29, 347, 1);
@@ -323,10 +323,10 @@ public class Ucenec extends JFrame {
 
 	}
 
-	private static JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
+	private JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
 
 		//ICON
-		checkIcon = new ImageIcon("icons//check.png");
+		checkIcon = new ImageIcon(getClass().getClassLoader().getResource("check.png"));				
 		Image checkImg = checkIcon.getImage();
 		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
 		checkIcon = new ImageIcon( newCheckImg);
@@ -417,9 +417,10 @@ public class Ucenec extends JFrame {
 	}
 
 
-	private static JButton makeButton(String caseCheckS,JTextField fieldS) {
+	private JButton makeButton(String caseCheckS,JTextField fieldS) {
 
 		//ICON
+		checkIcon = new ImageIcon(getClass().getClassLoader().getResource("check.png"));
 		checkIcon = new ImageIcon("check.png");
 		Image checkImg = checkIcon.getImage();
 		Image newCheckImg = checkImg.getScaledInstance(15, 17, java.awt.Image.SCALE_SMOOTH);
