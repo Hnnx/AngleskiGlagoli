@@ -8,12 +8,12 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					User frame = new User();
-					frame.setVisible(true);
+//					User frame = new User();
+//					frame.setVisible(true);
 					
 					//Debugging
-//					Ucenec x = new Ucenec();
-//					x.setVisible(true);
+					Ucenec x = new Ucenec();
+					x.setVisible(true);
 					
 					
 				} catch (Exception e) {

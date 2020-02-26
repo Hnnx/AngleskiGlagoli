@@ -53,12 +53,13 @@ public class Ucenec extends JFrame {
 	//>> Buttoni za preverjanje
 	private JButton resetButton;
 	private JButton check1, check2, check3, check4, check5, check6, check10, check11, check12 ,check9 ,check8 ,check7 ,check13 ,check14 ,check15;
+	JButton checkAllBtn;
 
 
 	//>>Paleta
 	private static Color temnoModra = new Color(0, 0, 51);
-	private static Color offModra = new Color(0,0,51);
-	private static Color winColor = new Color(46, 204, 113 );
+	private static Color winColor = new Color(46, 204, 113);
+	private static Color loseColor = new Color(255, 51, 51);
 
 	//>> Ikone
 	private static ImageIcon checkIcon;
@@ -156,28 +157,28 @@ public class Ucenec extends JFrame {
 				tocke = 0;
 				playerTockeLabel.setText(getTocke());
 				progressBarTocke.setValue(0);
-				
+
 				JTextField[] glagolCol = {
-							glagol1, pastS1, pastP1,prevod1,	
-							glagol2, pastS2, pastP2, prevod2,
-							glagol3, pastS3, pastP3, prevod3,
-							glagol4, pastS4 ,pastP4, prevod4,
-							glagol5, pastS5, pastP5, prevod5,
-							glagol6, pastS6 ,pastP6 ,prevod6,
-							glagol7, pastS7, pastP7 ,prevod7,	
-							glagol8, pastS8, pastP8, prevod8,
-							glagol9 ,pastS9, pastP9, prevod9,
-							glagol10, pastS10, pastP10, prevod10,
-							glagol11, pastS11, pastP11, prevod11,
-							glagol12, pastS12, pastP12, prevod12,
-							glagol13, pastS13, pastP13, prevod13,
-							glagol14, pastS14, pastP14, prevod14,
-							glagol15, pastS15, pastP15, prevod15,
+						glagol1, pastS1, pastP1,prevod1,	
+						glagol2, pastS2, pastP2, prevod2,
+						glagol3, pastS3, pastP3, prevod3,
+						glagol4, pastS4 ,pastP4, prevod4,
+						glagol5, pastS5, pastP5, prevod5,
+						glagol6, pastS6 ,pastP6 ,prevod6,
+						glagol7, pastS7, pastP7 ,prevod7,	
+						glagol8, pastS8, pastP8, prevod8,
+						glagol9 ,pastS9, pastP9, prevod9,
+						glagol10, pastS10, pastP10, prevod10,
+						glagol11, pastS11, pastP11, prevod11,
+						glagol12, pastS12, pastP12, prevod12,
+						glagol13, pastS13, pastP13, prevod13,
+						glagol14, pastS14, pastP14, prevod14,
+						glagol15, pastS15, pastP15, prevod15,
 
-					};
+				};
 
-				JTextField[] pastSimpleCol = {pastS1,pastS2,pastS3,pastS4,pastS5,pastS6,pastS7,pastS8,pastS9,pastS10,pastS11,pastS12,pastS13,pastS14,pastS15,};
-				JTextField[] pastPrincipleCol = {pastP1,pastP2,pastP3,pastP4,pastP5,pastP6,pastP7,pastP8,pastP9,pastP10,pastP11,pastP12,pastP13,pastP14,pastP15,};
+				JTextField[] pastSimpleCol = {pastS1,pastS2,pastS3,pastS4,pastS5,pastS6,pastS7,pastS8,pastS9,pastS10,pastS11,pastS12,pastS13,pastS14,pastS15};
+				JTextField[] pastPrincipleCol = {pastP1,pastP2,pastP3,pastP4,pastP5,pastP6,pastP7,pastP8,pastP9,pastP10,pastP11,pastP12,pastP13,pastP14,pastP15};
 
 
 				resetPolja(pastSimpleCol);
@@ -189,15 +190,14 @@ public class Ucenec extends JFrame {
 		mainPanel.add(resetButton);
 
 		//EXIT BUTTON (debug)
-		
 		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));	
 		Image exitImg = exitIcon.getImage();
 		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
 		exitIcon = new ImageIcon(resizeExitIcon);
-		
-		
-		
-		
+
+
+
+
 		JButton exit = new JButton(exitIcon);
 		exit.setBounds(881, 10, 30,37);
 		exit.addMouseListener(new MouseAdapter() {
@@ -209,7 +209,7 @@ public class Ucenec extends JFrame {
 		getContentPane().add(exit);
 
 
-		
+
 		/*	>> USER INFO PANEL << keyword: USERPANEL */
 		JPanel userInfoPanel = new JPanel();
 		userInfoPanel.setBounds(40, 21, 346, 89);
@@ -270,34 +270,34 @@ public class Ucenec extends JFrame {
 		mainPanel.add(checkGridPanel);
 		checkGridPanel.setLayout(new GridLayout(0, 1, 20, 20));
 
-		check1 = makeButton("have", pastS1, "had", pastP1); checkGridPanel.add(check1);
+		check1 = makeButton("had", pastS1, "had", pastP1); checkGridPanel.add(check1);
 		check2 = makeButton("lost",pastS2, "lost", pastP2); checkGridPanel.add(check2);
 		check3 = makeButton("stood", pastS3, "stood", pastP3); checkGridPanel.add(check3);
 		check4 = makeButton("ate",pastS4, "eaten", pastP4); checkGridPanel.add(check4);
 		check5 = makeButton("met",pastS5, "met", pastP5); checkGridPanel.add(check5);
- 		check6 = makeButton("thought",pastS6, "thought", pastP6); checkGridPanel.add(check6);
- 		check7 = makeButton("got",pastS7, "got", pastP7); checkGridPanel.add(check7);
- 		check8 = makeButton("drew",pastS8, "drawn", pastP8); checkGridPanel.add(check8);
- 		check9 = makeButton("know",pastS9, "knew", pastP9); checkGridPanel.add(check9);
- 		check10 = makeButton("sang",pastS10, "sung", pastP10); checkGridPanel.add(check10); 		
- 		check11 = makeButton("swam",pastS11, "swum", pastP11); checkGridPanel.add(check11);
- 		check12 = makeButton("took",pastS12, "taken", pastP12); checkGridPanel.add(check12);
- 		check13 = makeButton("forgot",pastS13, "forgotten", pastP13); checkGridPanel.add(check13);
- 		check14 = makeButton("read",pastS14, "read", pastP14); checkGridPanel.add(check14);
- 		check15 = makeButton("sewed",pastS15, "sewn", pastP15); checkGridPanel.add(check15);
+		check6 = makeButton("thought",pastS6, "thought", pastP6); checkGridPanel.add(check6);
+		check7 = makeButton("got",pastS7, "got", pastP7); checkGridPanel.add(check7);
+		check8 = makeButton("drew",pastS8, "drawn", pastP8); checkGridPanel.add(check8);
+		check9 = makeButton("know",pastS9, "knew", pastP9); checkGridPanel.add(check9);
+		check10 = makeButton("sang",pastS10, "sung", pastP10); checkGridPanel.add(check10); 		
+		check11 = makeButton("swam",pastS11, "swum", pastP11); checkGridPanel.add(check11);
+		check12 = makeButton("took",pastS12, "taken", pastP12); checkGridPanel.add(check12);
+		check13 = makeButton("forgot",pastS13, "forgotten", pastP13); checkGridPanel.add(check13);
+		check14 = makeButton("read",pastS14, "read", pastP14); checkGridPanel.add(check14);
+		check15 = makeButton("sewed",pastS15, "sewn", pastP15); checkGridPanel.add(check15);
 
 
 		/*	>> VRSTICA Z NAPISI NAD GLAGOLI	<< */		
 		vrsticaZNapisiPanel = new JPanel();
 		vrsticaZNapisiPanel.setBounds(40, 121, 709, 50);
-		vrsticaZNapisiPanel.setBackground(offModra);
+		vrsticaZNapisiPanel.setBackground(temnoModra);
 		mainPanel.add(vrsticaZNapisiPanel);
 		vrsticaZNapisiPanel.setLayout(new GridLayout(1, 0, 5, 0));
 
 		glagolTab = new JLabel("GLAGOL");
 		glagolTab.setFont(new Font("Arial", Font.PLAIN, 18));
 		glagolTab.setForeground(Color.WHITE);
-		glagolTab.setBackground(offModra);
+		glagolTab.setBackground(temnoModra);
 		glagolTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisiPanel.add(glagolTab);
 
@@ -320,7 +320,72 @@ public class Ucenec extends JFrame {
 		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisiPanel.add(prevodTab);
 
+		
+		//	>>	 GUMB ZA PRVERJANJE VSEH STOLPCEV	<< /*
+		checkAllBtn = new JButton("Check All");
+		
+		checkAllBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JTextField[] pastSimpleCol = {pastS1,pastS2,pastS3,pastS4,pastS5,pastS6,pastS7,pastS8,pastS9,pastS10,pastS11,pastS12,pastS13,pastS14,pastS15};
+				String[] odgovoriSimple= {"had","lost","stood","ate","met","thought","got","drew", "knew","sang","swam","took","forgot","read","sewed"};				
+				JTextField[] pastPrincipleCol = {pastP1,pastP2,pastP3,pastP4,pastP5,pastP6,pastP7,pastP8,pastP9,pastP10,pastP11,pastP12,pastP13,pastP14,pastP15};
+				String[] odgovoriPrinciple= {"had","lost","stood","eaten","met","thought","gotten","drawn", "knew","sung","swum","taken","forgotten","read","sewn"};
+				
 
+				preveriVsaPolja(pastSimpleCol, odgovoriSimple,pastPrincipleCol, odgovoriPrinciple);
+
+
+			}
+
+			private void preveriVsaPolja(JTextField[] glagolInput, String[] simple, JTextField[] caseCheck, String[] principle) {
+				tocke = 0;
+
+				for (int i = 0; i < glagolInput.length; i++) {
+					//>>BLANK:
+					
+					if(glagolInput[i].getText().isBlank()) {
+						glagolInput[i].setBackground(Color.LIGHT_GRAY);
+						glagolInput[i].setEditable(false);
+					}
+					if(caseCheck[i].getText().isBlank()) {
+						caseCheck[i].setBackground(Color.LIGHT_GRAY);
+						caseCheck[i].setEditable(false);
+					}
+					
+					
+					//>> PRVI STOLPEC:					
+					if(glagolInput[i].getText().equals(simple[i])) {
+						tocke++;
+						playerTockeLabel.setText(getTocke());
+						glagolInput[i].setForeground(winColor);
+						glagolInput[i].setEditable(false);
+					}
+					else {
+						glagolInput[i].setForeground(loseColor);
+						glagolInput[i].setEditable(false);
+					}
+					
+					//>> DRUGI STOPLEC:
+					if(caseCheck[i].getText().equals(principle[i])) {
+						tocke++;
+						playerTockeLabel.setText(getTocke());
+						progressBarTocke.setValue(getTockeBar());
+						caseCheck[i].setForeground(winColor);
+						caseCheck[i].setEditable(false);
+					}
+					else {
+						caseCheck[i].setEditable(false);
+						caseCheck[i].setForeground(loseColor);
+					}
+
+
+				}
+
+
+			}
+		});
+		checkAllBtn.setBounds(811, 184, 89, 23);
+		mainPanel.add(checkAllBtn);
 	}
 
 	private JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
@@ -367,12 +432,12 @@ public class Ucenec extends JFrame {
 						playerTockeLabel.setText(getTocke());
 						progressBarTocke.setValue(getTockeBar());
 					}
-						
+
 
 
 					fieldS.setForeground(winColor);
 					fieldS.setEditable(false);
-					fieldP.setForeground(Color.red);
+					fieldP.setForeground(loseColor);
 					fieldP.setEditable(false);
 
 				}
@@ -385,7 +450,7 @@ public class Ucenec extends JFrame {
 						progressBarTocke.setValue(getTockeBar());
 					}
 
-					fieldS.setForeground(Color.red);
+					fieldS.setForeground(loseColor);
 					fieldS.setEditable(false);
 					fieldP.setForeground(winColor);
 					fieldP.setEditable(false);
@@ -396,9 +461,9 @@ public class Ucenec extends JFrame {
 
 				else if( !vneseniTextS.equalsIgnoreCase(caseCheckS) && ! vneseniTextP.equalsIgnoreCase(caseCheckP)) {
 
-					fieldS.setForeground(Color.red);
+					fieldP.setForeground(loseColor);
 					fieldS.setEditable(false);
-					fieldP.setForeground(Color.red);
+					fieldP.setForeground(loseColor);
 					fieldP.setEditable(false);
 
 				}
@@ -440,7 +505,7 @@ public class Ucenec extends JFrame {
 
 				}
 				else {
-					fieldS.setForeground(Color.red);
+					fieldS.setForeground(loseColor);
 					fieldS.setEditable(false);
 				}
 			}
@@ -483,6 +548,8 @@ public class Ucenec extends JFrame {
 
 			element.setEditable(true);
 			element.setText(null);			
+			element.setBackground(Color.white);
+			element.setForeground(Color.black);
 		}
 
 	}
@@ -496,10 +563,5 @@ public class Ucenec extends JFrame {
 		int pointsPercentage = tocke * 10;
 		return pointsPercentage;
 	}
-	
-	public static void checkAll(JTextField[] glagoli) {
-		
-	}
-
 
 }
