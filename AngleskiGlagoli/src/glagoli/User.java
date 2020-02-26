@@ -151,7 +151,7 @@ public class User extends JFrame {
 		char[] getPassword = vnosPassword.getPassword();
 		String stringPassword = new String(vnosPassword.getPassword());
 		
-		if( uporabniskoIme.equals("Janir") && stringPassword.equals("bean")     ||   uporabniskoIme.equals("Admin") && stringPassword.equals("geslo1")  || uporabniskoIme.equals("Nejc") && stringPassword.equals("geslo1")) {
+		if( uporabniskoIme.equals("user") && stringPassword.equals("admin")     ||   uporabniskoIme.equals("Admin") && stringPassword.equals("geslo1")  || uporabniskoIme.equals("Nejc") && stringPassword.equals("geslo1")) {
 			
 			JOptionPane.showMessageDialog(null, "Pozdravljen, "+ uporabniskoIme);
 			Ucenec u = new Ucenec();

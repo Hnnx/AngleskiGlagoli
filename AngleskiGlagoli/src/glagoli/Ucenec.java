@@ -4,12 +4,11 @@ package glagoli;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
+import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -72,21 +71,24 @@ public class Ucenec extends JFrame {
 	private static JLabel playerTockeLabel;
 	private static JProgressBar progressBarTocke;
 
+	//Dimenzije
+
 
 
 	public Ucenec() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 983, 904);
+		setBounds(50, 0, 825, 856);
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0, 51, 102));
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
+		setContentPane(mainPanel);
+
 
 		/*   >> MAIN PANEL Z GLAGOLI keyword: GLAGOLPANEL  << */
 		JPanel glagoliPanel = new JPanel();
-		glagoliPanel.setBounds(40, 184, 704, 649);
+		glagoliPanel.setBounds(40, 150, 704, 630);
 		mainPanel.add(glagoliPanel);
 		glagoliPanel.setLayout(new GridLayout(0, 4, 20, 20));
 
@@ -144,11 +146,100 @@ public class Ucenec extends JFrame {
 		Image resizeResetIcon = resetImg.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);		
 		resetIcon = new ImageIcon(resizeResetIcon); 
 
+		//EXIT BUTTON (debug)
+		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));	
+		Image exitImg = exitIcon.getImage();
+		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
+		exitIcon = new ImageIcon(resizeExitIcon);
+		
+		//CHECK ICON
+		checkIcon = new ImageIcon(getClass().getClassLoader().getResource("check.png"));				
+		Image checkImg = checkIcon.getImage();
+		Image newCheckImg = checkImg.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
+		checkIcon = new ImageIcon( newCheckImg);
+
+
+
+		/*	>> USER INFO PANEL << keyword: USERPANEL */
+		JPanel userInfoPanel = new JPanel();
+		userInfoPanel.setBounds(42, 10, 702, 74);
+		userInfoPanel.setBackground(temnoModra);
+		mainPanel.add(userInfoPanel);
+		userInfoPanel.setLayout(null);
+
+		JLabel ucenecLabel = new JLabel("Ucenec :");
+		ucenecLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		ucenecLabel.setForeground(Color.WHITE);
+		ucenecLabel.setBounds(10, 0, 67, 30);
+		userInfoPanel.add(ucenecLabel);
+
+		JLabel tockeLabel = new JLabel("Tocke :");
+		tockeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+		tockeLabel.setForeground(Color.WHITE);
+		tockeLabel.setBounds(255, 8, 57, 14);
+		userInfoPanel.add(tockeLabel);
+
+		User u = new User(); 
+		String ime = u.getUporabniskoIme();
+
+		JLabel userName = new JLabel(ime);
+		userName.setForeground(Color.WHITE);
+		userName.setFont(new Font("Arial", Font.PLAIN, 15));
+		userName.setBounds(73, -2, 133, 35);
+		userInfoPanel.add(userName);
+
+		tocke30 = new JLabel(" / 30");
+		tocke30.setForeground(Color.WHITE);
+		tocke30.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		tocke30.setBounds(321, -4, 57, 34);
+		userInfoPanel.add(tocke30);
+
+		progressBarTocke = new JProgressBar();
+		progressBarTocke.setMaximum(300);
+		progressBarTocke.setMinimum(0);
+		progressBarTocke.setValue(getTockeBar());
+		progressBarTocke.setBounds(373, 8, 256, 15);
+		userInfoPanel.add(progressBarTocke);
+
+		playerTockeLabel = new JLabel(getTocke());
+		playerTockeLabel.setForeground(Color.WHITE);
+		playerTockeLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		playerTockeLabel.setBounds(311, -2, 30, 30);
+		userInfoPanel.add(playerTockeLabel);
+
+		//	>>	 GUMB ZA PRVERJANJE VSEH STOLPCEV	<< /*
+
+		checkAllBtn = new JButton(checkIcon);
+		checkAllBtn.setToolTipText("Preveri vse resitve");
+		checkAllBtn.setBounds(60, 34, 35, 35);
+		checkAllBtn.setBackground(Color.WHITE);
+		checkAllBtn.setOpaque(false);
+		checkAllBtn.setBorder(null);
+		userInfoPanel.add(checkAllBtn);
+
 		resetButton = new JButton(resetIcon);
-		resetButton.setBounds(766, 132, 35, 35);
+		resetButton.setBounds(15, 34, 35, 35);
+		resetButton.setToolTipText("Ponastavi");
+		userInfoPanel.add(resetButton);
 		resetButton.setBackground(temnoModra);
 		resetButton.setOpaque(false);
 		resetButton.setBorderPainted(false);
+
+
+
+
+		JButton exit = new JButton(exitIcon);
+		exit.setBounds(662, 34, 30, 37);
+		userInfoPanel.add(exit);
+		exit.setBackground(loseColor);
+		exit.setOpaque(false);
+		exit.setBorder(null);
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				System.exit(0);
+			}
+		});
 
 		resetButton.addMouseListener(new MouseAdapter() {
 
@@ -187,84 +278,71 @@ public class Ucenec extends JFrame {
 			}
 		});
 
-		mainPanel.add(resetButton);
-
-		//EXIT BUTTON (debug)
-		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));	
-		Image exitImg = exitIcon.getImage();
-		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
-		exitIcon = new ImageIcon(resizeExitIcon);
-
+		checkAllBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JTextField[] pastSimpleCol = {pastS1,pastS2,pastS3,pastS4,pastS5,pastS6,pastS7,pastS8,pastS9,pastS10,pastS11,pastS12,pastS13,pastS14,pastS15};
+				String[] odgovoriSimple= {"had","lost","stood","ate","met","thought","got","drew", "knew","sang","swam","took","forgot","read","sewed"};				
+				JTextField[] pastPrincipleCol = {pastP1,pastP2,pastP3,pastP4,pastP5,pastP6,pastP7,pastP8,pastP9,pastP10,pastP11,pastP12,pastP13,pastP14,pastP15};
+				String[] odgovoriPrinciple= {"had","lost","stood","eaten","met","thought","gotten","drawn", "knew","sung","swum","taken","forgotten","read","sewn"};
 
 
+				preveriVsaPolja(pastSimpleCol, odgovoriSimple,pastPrincipleCol, odgovoriPrinciple);
 
-		JButton exit = new JButton(exitIcon);
-		exit.setBounds(881, 10, 30,37);
-		exit.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				System.exit(0);
+
+			}
+
+			private void preveriVsaPolja(JTextField[] glagolInput, String[] simple, JTextField[] caseCheck, String[] principle) {
+				tocke = 0;
+
+				for (int i = 0; i < glagolInput.length; i++) {
+					//>>BLANK:
+
+					if(glagolInput[i].getText().isBlank()) {
+						glagolInput[i].setBackground(Color.LIGHT_GRAY);
+						glagolInput[i].setEditable(false);
+					}
+					if(caseCheck[i].getText().isBlank()) {
+						caseCheck[i].setBackground(Color.LIGHT_GRAY);
+						caseCheck[i].setEditable(false);
+					}
+
+
+					//>> PRVI STOLPEC:					
+					if(glagolInput[i].getText().equals(simple[i])) {
+						tocke++;
+						playerTockeLabel.setText(getTocke());
+						glagolInput[i].setForeground(winColor);
+						glagolInput[i].setEditable(false);
+					}
+					else {
+						glagolInput[i].setForeground(loseColor);
+						glagolInput[i].setEditable(false);
+					}
+
+					//>> DRUGI STOPLEC:
+					if(caseCheck[i].getText().equals(principle[i])) {
+						tocke++;
+						playerTockeLabel.setText(getTocke());
+						progressBarTocke.setValue(getTockeBar());
+						caseCheck[i].setForeground(winColor);
+						caseCheck[i].setEditable(false);
+					}
+					else {
+						caseCheck[i].setEditable(false);
+						caseCheck[i].setForeground(loseColor);
+					}
+
+
+				}
+
+
 			}
 		});
-		getContentPane().add(exit);
-
-
-
-		/*	>> USER INFO PANEL << keyword: USERPANEL */
-		JPanel userInfoPanel = new JPanel();
-		userInfoPanel.setBounds(40, 21, 346, 89);
-		userInfoPanel.setBackground(temnoModra);
-		mainPanel.add(userInfoPanel);
-		userInfoPanel.setLayout(null);
-
-		JLabel ucenecLabel = new JLabel("Ucenec :");
-		ucenecLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		ucenecLabel.setForeground(Color.WHITE);
-		ucenecLabel.setBounds(10, 0, 76, 30);
-		userInfoPanel.add(ucenecLabel);
-
-		JLabel tockeLabel = new JLabel("Tocke :");
-		tockeLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		tockeLabel.setForeground(Color.WHITE);
-		tockeLabel.setBounds(20, 41, 67, 14);
-		userInfoPanel.add(tockeLabel);
-
-		User u = new User(); 
-		String ime = u.getUporabniskoIme();
-
-		JLabel userName = new JLabel(ime);
-		userName.setForeground(Color.WHITE);
-		userName.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		userName.setBounds(94, -2, 133, 35);
-		userInfoPanel.add(userName);
-
-		tocke30 = new JLabel(" / 30");
-		tocke30.setForeground(Color.WHITE);
-		tocke30.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tocke30.setBounds(128, 30, 57, 34);
-		userInfoPanel.add(tocke30);
-
-		JSeparator crtaPodUcencem = new JSeparator();
-		crtaPodUcencem.setBounds(-1, 29, 347, 1);
-		userInfoPanel.add(crtaPodUcencem);
-
-		progressBarTocke = new JProgressBar();
-		progressBarTocke.setMaximum(300);
-		progressBarTocke.setMinimum(0);
-		progressBarTocke.setValue(getTockeBar());
-		progressBarTocke.setBounds(10, 66, 326, 12);
-		userInfoPanel.add(progressBarTocke);
-
-		playerTockeLabel = new JLabel(getTocke());
-		playerTockeLabel.setForeground(Color.WHITE);
-		playerTockeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		playerTockeLabel.setBounds(104, 32, 30, 30);
-		userInfoPanel.add(playerTockeLabel);
 
 
 		/*	>> CHECK GRID PANEL	<<	keyword: CHECKPANEL */
 		JPanel checkGridPanel = new JPanel();
-		checkGridPanel.setBounds(754, 184, 41, 649);
+		checkGridPanel.setBounds(754, 150, 41, 630);
 		checkGridPanel.setBackground(Color.black);
 		checkGridPanel.setOpaque(false);
 		mainPanel.add(checkGridPanel);
@@ -289,7 +367,7 @@ public class Ucenec extends JFrame {
 
 		/*	>> VRSTICA Z NAPISI NAD GLAGOLI	<< */		
 		vrsticaZNapisiPanel = new JPanel();
-		vrsticaZNapisiPanel.setBounds(40, 121, 709, 50);
+		vrsticaZNapisiPanel.setBounds(40, 90, 704, 50);
 		vrsticaZNapisiPanel.setBackground(temnoModra);
 		mainPanel.add(vrsticaZNapisiPanel);
 		vrsticaZNapisiPanel.setLayout(new GridLayout(1, 0, 5, 0));
@@ -319,73 +397,6 @@ public class Ucenec extends JFrame {
 		prevodTab.setForeground(Color.WHITE);
 		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
 		vrsticaZNapisiPanel.add(prevodTab);
-
-		
-		//	>>	 GUMB ZA PRVERJANJE VSEH STOLPCEV	<< /*
-		checkAllBtn = new JButton("Check All");
-		
-		checkAllBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JTextField[] pastSimpleCol = {pastS1,pastS2,pastS3,pastS4,pastS5,pastS6,pastS7,pastS8,pastS9,pastS10,pastS11,pastS12,pastS13,pastS14,pastS15};
-				String[] odgovoriSimple= {"had","lost","stood","ate","met","thought","got","drew", "knew","sang","swam","took","forgot","read","sewed"};				
-				JTextField[] pastPrincipleCol = {pastP1,pastP2,pastP3,pastP4,pastP5,pastP6,pastP7,pastP8,pastP9,pastP10,pastP11,pastP12,pastP13,pastP14,pastP15};
-				String[] odgovoriPrinciple= {"had","lost","stood","eaten","met","thought","gotten","drawn", "knew","sung","swum","taken","forgotten","read","sewn"};
-				
-
-				preveriVsaPolja(pastSimpleCol, odgovoriSimple,pastPrincipleCol, odgovoriPrinciple);
-
-
-			}
-
-			private void preveriVsaPolja(JTextField[] glagolInput, String[] simple, JTextField[] caseCheck, String[] principle) {
-				tocke = 0;
-
-				for (int i = 0; i < glagolInput.length; i++) {
-					//>>BLANK:
-					
-					if(glagolInput[i].getText().isBlank()) {
-						glagolInput[i].setBackground(Color.LIGHT_GRAY);
-						glagolInput[i].setEditable(false);
-					}
-					if(caseCheck[i].getText().isBlank()) {
-						caseCheck[i].setBackground(Color.LIGHT_GRAY);
-						caseCheck[i].setEditable(false);
-					}
-					
-					
-					//>> PRVI STOLPEC:					
-					if(glagolInput[i].getText().equals(simple[i])) {
-						tocke++;
-						playerTockeLabel.setText(getTocke());
-						glagolInput[i].setForeground(winColor);
-						glagolInput[i].setEditable(false);
-					}
-					else {
-						glagolInput[i].setForeground(loseColor);
-						glagolInput[i].setEditable(false);
-					}
-					
-					//>> DRUGI STOPLEC:
-					if(caseCheck[i].getText().equals(principle[i])) {
-						tocke++;
-						playerTockeLabel.setText(getTocke());
-						progressBarTocke.setValue(getTockeBar());
-						caseCheck[i].setForeground(winColor);
-						caseCheck[i].setEditable(false);
-					}
-					else {
-						caseCheck[i].setEditable(false);
-						caseCheck[i].setForeground(loseColor);
-					}
-
-
-				}
-
-
-			}
-		});
-		checkAllBtn.setBounds(811, 184, 89, 23);
-		mainPanel.add(checkAllBtn);
 	}
 
 	private JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
