@@ -4,9 +4,7 @@ package glagoli;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.JTextField;
@@ -18,7 +16,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -54,7 +51,6 @@ public class Ucenec extends JFrame {
 	private JButton check1, check2, check3, check4, check5, check6, check10, check11, check12 ,check9 ,check8 ,check7 ,check13 ,check14 ,check15;
 	JButton checkAllBtn;
 
-
 	//>>Paleta
 	private static Color temnoModra = new Color(0, 0, 51);
 	private static Color winColor = new Color(46, 204, 113);
@@ -78,7 +74,7 @@ public class Ucenec extends JFrame {
 	public Ucenec() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 0, 825, 856);
+		setBounds(50, 0, 789, 789);
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0, 51, 102));
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,9 +84,9 @@ public class Ucenec extends JFrame {
 
 		/*   >> MAIN PANEL Z GLAGOLI keyword: GLAGOLPANEL  << */
 		JPanel glagoliPanel = new JPanel();
-		glagoliPanel.setBounds(40, 150, 704, 630);
+		glagoliPanel.setBounds(40, 150, 665, 594);
 		mainPanel.add(glagoliPanel);
-		glagoliPanel.setLayout(new GridLayout(0, 4, 20, 20));
+		glagoliPanel.setLayout(new GridLayout(0, 4, 50, 10));
 
 		/*   >>  GLAGOLI V GRIDU <<  keyword: GLAGOLGRID << */
 		glagol1 = makeGlagol("HAVE"); pastS1 = makeGlagol(); pastP1 = makeGlagol(); prevod1 = makeGlagol("IMETI");		
@@ -143,15 +139,15 @@ public class Ucenec extends JFrame {
 		/*	>> HARD + SOFT RESET	<< keyword: hardReset */
 		resetIcon = new ImageIcon(getClass().getClassLoader().getResource("arrw.png"));
 		Image resetImg = resetIcon.getImage();
-		Image resizeResetIcon = resetImg.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);		
+		Image resizeResetIcon = resetImg.getScaledInstance(27, 27, java.awt.Image.SCALE_SMOOTH);		
 		resetIcon = new ImageIcon(resizeResetIcon); 
 
 		//EXIT BUTTON (debug)
-		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));	
+		exitIcon = new ImageIcon(getClass().getClassLoader().getResource("novExit.png"));	
 		Image exitImg = exitIcon.getImage();
 		Image resizeExitIcon = exitImg.getScaledInstance(30, 37, java.awt.Image.SCALE_SMOOTH);
 		exitIcon = new ImageIcon(resizeExitIcon);
-		
+
 		//CHECK ICON
 		checkIcon = new ImageIcon(getClass().getClassLoader().getResource("check.png"));				
 		Image checkImg = checkIcon.getImage();
@@ -162,7 +158,7 @@ public class Ucenec extends JFrame {
 
 		/*	>> USER INFO PANEL << keyword: USERPANEL */
 		JPanel userInfoPanel = new JPanel();
-		userInfoPanel.setBounds(42, 10, 702, 74);
+		userInfoPanel.setBounds(42, 10, 663, 69);
 		userInfoPanel.setBackground(temnoModra);
 		mainPanel.add(userInfoPanel);
 		userInfoPanel.setLayout(null);
@@ -176,7 +172,7 @@ public class Ucenec extends JFrame {
 		JLabel tockeLabel = new JLabel("Tocke :");
 		tockeLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		tockeLabel.setForeground(Color.WHITE);
-		tockeLabel.setBounds(255, 8, 57, 14);
+		tockeLabel.setBounds(10, 41, 57, 14);
 		userInfoPanel.add(tockeLabel);
 
 		User u = new User(); 
@@ -191,55 +187,30 @@ public class Ucenec extends JFrame {
 		tocke30 = new JLabel(" / 30");
 		tocke30.setForeground(Color.WHITE);
 		tocke30.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		tocke30.setBounds(321, -4, 57, 34);
+		tocke30.setBounds(87, 29, 57, 34);
 		userInfoPanel.add(tocke30);
 
 		progressBarTocke = new JProgressBar();
 		progressBarTocke.setMaximum(300);
 		progressBarTocke.setMinimum(0);
+		progressBarTocke.setForeground(winColor);
 		progressBarTocke.setValue(getTockeBar());
-		progressBarTocke.setBounds(373, 8, 256, 15);
+		progressBarTocke.setBounds(154, 36, 455, 20);
 		userInfoPanel.add(progressBarTocke);
 
 		playerTockeLabel = new JLabel(getTocke());
 		playerTockeLabel.setForeground(Color.WHITE);
 		playerTockeLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		playerTockeLabel.setBounds(311, -2, 30, 30);
+		playerTockeLabel.setBounds(73, 31, 30, 30);
 		userInfoPanel.add(playerTockeLabel);
 
-		//	>>	 GUMB ZA PRVERJANJE VSEH STOLPCEV	<< /*
-
-		checkAllBtn = new JButton(checkIcon);
-		checkAllBtn.setToolTipText("Preveri vse resitve");
-		checkAllBtn.setBounds(60, 34, 35, 35);
-		checkAllBtn.setBackground(Color.WHITE);
-		checkAllBtn.setOpaque(false);
-		checkAllBtn.setBorder(null);
-		userInfoPanel.add(checkAllBtn);
-
 		resetButton = new JButton(resetIcon);
-		resetButton.setBounds(15, 34, 35, 35);
-		resetButton.setToolTipText("Ponastavi");
+		resetButton.setBounds(619, 29, 35, 35);
 		userInfoPanel.add(resetButton);
+		resetButton.setToolTipText("Ponastavi");
 		resetButton.setBackground(temnoModra);
 		resetButton.setOpaque(false);
 		resetButton.setBorderPainted(false);
-
-
-
-
-		JButton exit = new JButton(exitIcon);
-		exit.setBounds(662, 34, 30, 37);
-		userInfoPanel.add(exit);
-		exit.setBackground(loseColor);
-		exit.setOpaque(false);
-		exit.setBorder(null);
-		exit.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				System.exit(0);
-			}
-		});
 
 		resetButton.addMouseListener(new MouseAdapter() {
 
@@ -275,6 +246,91 @@ public class Ucenec extends JFrame {
 				resetPolja(pastSimpleCol);
 				resetPolja(pastPrincipleCol);
 				//resetPolja(glagolCol);
+			}
+		});
+
+
+		/*	>> CHECK GRID PANEL	<<	keyword: CHECKPANEL */
+		JPanel checkGridPanel = new JPanel();
+		checkGridPanel.setBounds(715, 150, 41, 594);
+		checkGridPanel.setBackground(Color.black);
+		checkGridPanel.setOpaque(false);
+		mainPanel.add(checkGridPanel);
+		checkGridPanel.setLayout(new GridLayout(0, 1, 20, 20));
+
+		check1 = makeButton("had", pastS1, "had", pastP1); checkGridPanel.add(check1);
+		check2 = makeButton("lost",pastS2, "lost", pastP2); checkGridPanel.add(check2);
+		check3 = makeButton("stood", pastS3, "stood", pastP3); checkGridPanel.add(check3);
+		check4 = makeButton("ate",pastS4, "eaten", pastP4); checkGridPanel.add(check4);
+		check5 = makeButton("met",pastS5, "met", pastP5); checkGridPanel.add(check5);
+		check6 = makeButton("thought",pastS6, "thought", pastP6); checkGridPanel.add(check6);
+		check7 = makeButton("got",pastS7, "got", pastP7); checkGridPanel.add(check7);
+		check8 = makeButton("drew",pastS8, "drawn", pastP8); checkGridPanel.add(check8);
+		check9 = makeButton("know",pastS9, "knew", pastP9); checkGridPanel.add(check9);
+		check10 = makeButton("sang",pastS10, "sung", pastP10); checkGridPanel.add(check10); 		
+		check11 = makeButton("swam",pastS11, "swum", pastP11); checkGridPanel.add(check11);
+		check12 = makeButton("took",pastS12, "taken", pastP12); checkGridPanel.add(check12);
+		check13 = makeButton("forgot",pastS13, "forgotten", pastP13); checkGridPanel.add(check13);
+		check14 = makeButton("read",pastS14, "read", pastP14); checkGridPanel.add(check14);
+		check15 = makeButton("sewed",pastS15, "sewn", pastP15); checkGridPanel.add(check15);
+
+
+		/*	>> VRSTICA Z NAPISI NAD GLAGOLI	<< */		
+		vrsticaZNapisiPanel = new JPanel();
+		vrsticaZNapisiPanel.setBounds(40, 90, 665, 50);
+		vrsticaZNapisiPanel.setBackground(temnoModra);
+		mainPanel.add(vrsticaZNapisiPanel);
+		vrsticaZNapisiPanel.setLayout(new GridLayout(1, 0, 5, 0));
+
+		glagolTab = new JLabel("GLAGOL");
+		glagolTab.setFont(new Font("Arial", Font.PLAIN, 18));
+		glagolTab.setForeground(Color.WHITE);
+		glagolTab.setBackground(temnoModra);
+		glagolTab.setHorizontalAlignment(SwingConstants.CENTER);
+		vrsticaZNapisiPanel.add(glagolTab);
+
+
+		pastSimpleTab = new JLabel("SIMPLE");
+		pastSimpleTab.setFont(new Font("Arial", Font.PLAIN, 18));
+		pastSimpleTab.setForeground(Color.WHITE);
+		pastSimpleTab.setHorizontalAlignment(SwingConstants.CENTER);
+		vrsticaZNapisiPanel.add(pastSimpleTab);
+
+		pastPrincipleTab = new JLabel("PRINCIPLE");
+		pastPrincipleTab.setFont(new Font("Arial", Font.PLAIN, 18));
+		pastPrincipleTab.setForeground(Color.WHITE);
+		pastPrincipleTab.setHorizontalAlignment(SwingConstants.CENTER);
+		vrsticaZNapisiPanel.add(pastPrincipleTab);
+
+		prevodTab = new JLabel("PREVOD");
+		prevodTab.setFont(new Font("Arial", Font.PLAIN, 18));
+		prevodTab.setForeground(Color.WHITE);
+		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
+		vrsticaZNapisiPanel.add(prevodTab);
+
+		//	>>	 GUMB ZA PRVERJANJE VSEH STOLPCEV	<< /*
+
+		checkAllBtn = new JButton(checkIcon);
+		checkAllBtn.setBounds(715, 100, 35, 35);
+		mainPanel.add(checkAllBtn);
+		checkAllBtn.setToolTipText("Preveri vse resitve");
+		checkAllBtn.setBackground(Color.WHITE);
+		checkAllBtn.setOpaque(false);
+		checkAllBtn.setBorder(null);
+
+
+
+
+		JButton exit = new JButton(exitIcon);
+		exit.setBounds(715, 42, 30, 37);
+		mainPanel.add(exit);
+		exit.setBackground(loseColor);
+		exit.setOpaque(false);
+		exit.setBorder(null);
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				System.exit(0);
 			}
 		});
 
@@ -338,65 +394,6 @@ public class Ucenec extends JFrame {
 
 			}
 		});
-
-
-		/*	>> CHECK GRID PANEL	<<	keyword: CHECKPANEL */
-		JPanel checkGridPanel = new JPanel();
-		checkGridPanel.setBounds(754, 150, 41, 630);
-		checkGridPanel.setBackground(Color.black);
-		checkGridPanel.setOpaque(false);
-		mainPanel.add(checkGridPanel);
-		checkGridPanel.setLayout(new GridLayout(0, 1, 20, 20));
-
-		check1 = makeButton("had", pastS1, "had", pastP1); checkGridPanel.add(check1);
-		check2 = makeButton("lost",pastS2, "lost", pastP2); checkGridPanel.add(check2);
-		check3 = makeButton("stood", pastS3, "stood", pastP3); checkGridPanel.add(check3);
-		check4 = makeButton("ate",pastS4, "eaten", pastP4); checkGridPanel.add(check4);
-		check5 = makeButton("met",pastS5, "met", pastP5); checkGridPanel.add(check5);
-		check6 = makeButton("thought",pastS6, "thought", pastP6); checkGridPanel.add(check6);
-		check7 = makeButton("got",pastS7, "got", pastP7); checkGridPanel.add(check7);
-		check8 = makeButton("drew",pastS8, "drawn", pastP8); checkGridPanel.add(check8);
-		check9 = makeButton("know",pastS9, "knew", pastP9); checkGridPanel.add(check9);
-		check10 = makeButton("sang",pastS10, "sung", pastP10); checkGridPanel.add(check10); 		
-		check11 = makeButton("swam",pastS11, "swum", pastP11); checkGridPanel.add(check11);
-		check12 = makeButton("took",pastS12, "taken", pastP12); checkGridPanel.add(check12);
-		check13 = makeButton("forgot",pastS13, "forgotten", pastP13); checkGridPanel.add(check13);
-		check14 = makeButton("read",pastS14, "read", pastP14); checkGridPanel.add(check14);
-		check15 = makeButton("sewed",pastS15, "sewn", pastP15); checkGridPanel.add(check15);
-
-
-		/*	>> VRSTICA Z NAPISI NAD GLAGOLI	<< */		
-		vrsticaZNapisiPanel = new JPanel();
-		vrsticaZNapisiPanel.setBounds(40, 90, 704, 50);
-		vrsticaZNapisiPanel.setBackground(temnoModra);
-		mainPanel.add(vrsticaZNapisiPanel);
-		vrsticaZNapisiPanel.setLayout(new GridLayout(1, 0, 5, 0));
-
-		glagolTab = new JLabel("GLAGOL");
-		glagolTab.setFont(new Font("Arial", Font.PLAIN, 18));
-		glagolTab.setForeground(Color.WHITE);
-		glagolTab.setBackground(temnoModra);
-		glagolTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisiPanel.add(glagolTab);
-
-
-		pastSimpleTab = new JLabel("SIMPLE");
-		pastSimpleTab.setFont(new Font("Arial", Font.PLAIN, 18));
-		pastSimpleTab.setForeground(Color.WHITE);
-		pastSimpleTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisiPanel.add(pastSimpleTab);
-
-		pastPrincipleTab = new JLabel("PRINCIPLE");
-		pastPrincipleTab.setFont(new Font("Arial", Font.PLAIN, 18));
-		pastPrincipleTab.setForeground(Color.WHITE);
-		pastPrincipleTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisiPanel.add(pastPrincipleTab);
-
-		prevodTab = new JLabel("PREVOD");
-		prevodTab.setFont(new Font("Arial", Font.PLAIN, 18));
-		prevodTab.setForeground(Color.WHITE);
-		prevodTab.setHorizontalAlignment(SwingConstants.CENTER);
-		vrsticaZNapisiPanel.add(prevodTab);
 	}
 
 	private JButton makeButton(String caseCheckS,JTextField fieldS, String caseCheckP, JTextField fieldP) {
