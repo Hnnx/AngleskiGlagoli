@@ -15,9 +15,15 @@ public class Main  {
 //					Ucenec x = new Ucenec();
 //					x.setVisible(true);
 					
-//					DBConnection.poveziBazo();
-//					DBConnection.narediTable("ucenci");
+					DBConnection.poveziBazo();
+					DBConnection.narediTabelo("ucenec");
+					DBConnection.narediTabeloGlagol("simple");
+					DBConnection.narediTabeloGlagol("part");
+					DBConnection.narediTabeloGlagol("prevod");
+					DBConnection.narediTabeloGlagol("nivo");
+					DBConnection.narediTabeloGlagol("razred");
 					
+					PolnjeneTabele.prikaziTabeloUcenec();
 					
 					
 				} catch (Exception e) {
@@ -28,3 +34,4 @@ public class Main  {
 	}
 
 }
+
