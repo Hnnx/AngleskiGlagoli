@@ -2,6 +2,7 @@ package glagoli;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,10 +15,11 @@ public class DBConnection {
 	protected static String imeBaze = "DB//bazic";
 	protected static String url = "jdbc:sqlite:"+imeBaze+".db";
 	protected static Statement stmt = null;
+	protected static PreparedStatement pST;
 	protected static ResultSet vrnjeniPodatki = null;
 
 
-	public static void poveziBazo() {
+	protected void poveziBazo() {
 
 		try {
 			povezava = DriverManager.getConnection(url);
@@ -28,7 +30,7 @@ public class DBConnection {
 		}
 	}
 
-	public static void narediTabelo(String tableName) {
+	protected void narediTabelo(String tableName) {
 		
 		
 		
@@ -58,7 +60,7 @@ public class DBConnection {
 		
 	}
 
-	public static void narediTabeloGlagol(String tableName) {
+	protected void narediTabeloGlagol(String tableName) {
 		
 		
 		
@@ -78,11 +80,20 @@ public class DBConnection {
 			System.out.println("Prislo je do napake pri izdelavi tabele.\nOpis napake: "+e.toString());
 		}
 		
-		
-	
-		
 	}
 	
+	protected void poveziUstvari() {
+		
+		poveziBazo();
+		narediTabelo("ucenec");
+		narediTabeloGlagol("simple");
+		narediTabeloGlagol("part");
+		narediTabeloGlagol("prevod");
+		narediTabeloGlagol("nivo");
+		narediTabeloGlagol("razred");
+		
+		
+	}
 }
 
 
