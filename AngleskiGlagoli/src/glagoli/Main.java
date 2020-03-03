@@ -15,15 +15,15 @@ public class Main  {
 //					Ucenec x = new Ucenec();
 //					x.setVisible(true);
 					
-					DBConnection.poveziBazo();
-					DBConnection.narediTabelo("ucenec");
-					DBConnection.narediTabeloGlagol("simple");
-					DBConnection.narediTabeloGlagol("part");
-					DBConnection.narediTabeloGlagol("prevod");
-					DBConnection.narediTabeloGlagol("nivo");
-					DBConnection.narediTabeloGlagol("razred");
+//					DBConnection povezava = new DBConnection();
+//					povezava.poveziUstvari();
 					
-					PolnjeneTabele.prikaziTabeloUcenec();
+//					DBControl uredi = new DBControl();
+					
+					
+					RSTable tabela = new RSTable();
+					tabela.setVisible(true);
+					
 					
 					
 				} catch (Exception e) {

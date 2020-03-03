@@ -1,20 +1,17 @@
 package glagoli;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import glagoli.DBConnection;
 
-public class PolnjeneTabele extends  DBConnection{
+public class DBControl extends  DBConnection{
 	
-	protected static Connection xcon;
 	private static String ucenecInsert = null;
 	private static String glagolInsert = null;
-	private static PreparedStatement pST;
 	
 	
-	public static void insertUcenec(String ime, String priimek, int starost, String simple, String part, String prevod, String nivo, String razred) {
+	
+	protected void insertUcenec(String ime, String priimek, int starost, String simple, String part, String prevod, String nivo, String razred) {
 		
 		try {
 			
@@ -41,8 +38,27 @@ public class PolnjeneTabele extends  DBConnection{
 		
 	}
 	
-	public static void prikaziTabeloUcenec() {
+	protected void insertGlagol(String tableName,String glagol) {
 		
+		try {
+			
+			glagolInsert = "INSERT INTO "+tableName+" "
+						+ "(glagol) VALUES (?)";
+			
+			pST = povezava.prepareStatement(glagolInsert);
+			
+			pST.setString(1, glagol);
+			pST.executeUpdate();
+			
+			System.out.println("Glagol uspeno vnesen v bazo");
+			
+		} catch (SQLException e) {
+			System.out.println("Pri vstavljanju podatkov v  tabelo je prislo do napake.\nOpis Napake: " + e.toString());
+		}
+		
+	}
+	
+	protected void prikaziTabeloUcenec() {
 		String sql = "SELECT * FROM ucenec";
 		
 		try {
@@ -50,7 +66,6 @@ public class PolnjeneTabele extends  DBConnection{
 			
 			vrnjeniPodatki = pST.executeQuery();
 			
-			System.out.println("Podatki iz baze:\n");
 			while(vrnjeniPodatki.next()) {
 				System.out.print(vrnjeniPodatki.getInt(1));
 				System.out.print("\t" + vrnjeniPodatki.getString(2));
@@ -60,20 +75,33 @@ public class PolnjeneTabele extends  DBConnection{
 				System.out.print("\t" + vrnjeniPodatki.getString(6));
 				System.out.print("\t" + vrnjeniPodatki.getString(7));
 				System.out.println("\t" + vrnjeniPodatki.getString(8));
-				
 			}
-			
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	protected void prikaziTabeloGlagol(String tableName) {
+		
+		String sql = "SELECT * FROM "+tableName;
+		
+		try {
+			pST = povezava.prepareStatement(sql);
+			vrnjeniPodatki = pST.executeQuery();
+			
+			while(vrnjeniPodatki.next()) {
+				System.out.print(" "+vrnjeniPodatki.getString(2));
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("Pri izpisovanju tabele je prislo do napake.\nOpis Napake: " + e.toString());
+		}
 		
 	}
 	
-	
-	public static void removeRecordID(String tableName, int id) {
+	protected void removeRecordID(String tableName, int id) {
 		
 		String deleteQuery = "DELETE FROM "+tableName+" WHERE id=?";
 		
@@ -91,7 +119,7 @@ public class PolnjeneTabele extends  DBConnection{
 
 	}
 
-	public static void removeRecordName(String tableName, String ime) {
+	protected void removeRecordName(String tableName, String ime) {
 		
 		String deleteQuery = "DELETE FROM "+tableName+" WHERE ime=?";
 		
@@ -107,54 +135,9 @@ public class PolnjeneTabele extends  DBConnection{
 			e.printStackTrace();
 		}
 
-	
-
 	}
 	
-	public static void polniGlagol(String tableName,String glagol) {
-
-		
-
-		
-		try {
-			
-			glagolInsert = "INSERT INTO "+tableName+" "
-						+ "(glagol) VALUES (?)";
-			
-			pST = povezava.prepareStatement(glagolInsert);
-			
-			pST.setString(1, glagol);
-			pST.executeUpdate();
-			
-			System.out.println("Glagol uspeno vnesen v bazo");
-			
-		} catch (SQLException e) {
-			System.out.println("Prislo je do napake pri povezovanju z bazo.\nOpis napake: " + e.toString());
-		}
-		
-	
-		
-	}
-
-	public static void prikaziTabeloGlagol(String tableName) {
-		
-		String sql = "SELECT * FROM "+tableName;
-		
-		try {
-			pST = povezava.prepareStatement(sql);
-			vrnjeniPodatki = pST.executeQuery();
-			
-			while(vrnjeniPodatki.next()) {
-				System.out.print(" "+vrnjeniPodatki.getString(2));
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-}
-	
-	public static void dropTable(String tableName) {
+	protected void dropTable(String tableName) {
 		
 		String sql = "DROP TABLE "+tableName;
 		
